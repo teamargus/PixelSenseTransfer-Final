@@ -1,0 +1,88 @@
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\bin\Debug\Resources\icon.png
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.xml
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.exe
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.pdb
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\SurfaceWindow1.baml
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\TagVisualization1.baml
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\App.baml
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\SurfaceWindow1.g.cs
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\TagVisualization1.g.cs
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\App.g.cs
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest_Content.g.cs
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest_MarkupCompile.cache
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.g.resources
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.Properties.Resources.resources
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.csproj.GenerateResource.Cache
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.exe
+C:\Users\surface\Documents\Visual Studio 2010\Projects\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.pdb
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.exe
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.pdb
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.exe
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.pdb
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\Resources\icon.png
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.xml
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.exe
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.pdb
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\SurfaceWindow1.baml
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\TagVisualization1.baml
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\App.baml
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\SurfaceWindow1.g.cs
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\TagVisualization1.g.cs
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\App.g.cs
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest_Content.g.cs
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest_MarkupCompile.cache
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.g.resources
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.Properties.Resources.resources
+C:\Users\Administrator\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.csproj.GenerateResource.Cache
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\Resources\icon.png
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.xml
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.exe
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.pdb
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\SurfaceWindow1.baml
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\TagVisualization1.baml
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\App.baml
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\SurfaceWindow1.g.cs
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\TagVisualization1.g.cs
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\App.g.cs
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest_Content.g.cs
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest_MarkupCompile.cache
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.g.resources
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.Properties.Resources.resources
+C:\Users\surface\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.csproj.GenerateResource.Cache
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.exe
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.pdb
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\Resources\icon.png
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.xml
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.exe
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\bin\Debug\tagVisualizationTest.pdb
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.csprojResolveAssemblyReference.cache
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\SurfaceWindow1.baml
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\TagVisualization1.baml
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\App.baml
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\SurfaceWindow1.g.cs
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\TagVisualization1.g.cs
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\App.g.cs
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest_Content.g.cs
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest_MarkupCompile.cache
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.g.resources
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.Properties.Resources.resources
+C:\Users\simkeyur\Documents\GitHub\tagVisualizationTest\tagVisualizationTest\obj\Debug\tagVisualizationTest.csproj.GenerateResource.Cache
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest.exe
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest.pdb
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\bin\Debug\Resources\icon.png
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\bin\Debug\tagVisualizationTest.xml
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\bin\Debug\tagVisualizationTest.exe
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\bin\Debug\tagVisualizationTest.pdb
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest.csprojResolveAssemblyReference.cache
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\SurfaceWindow1.baml
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\TagVisualization1.baml
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\App.baml
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\SurfaceWindow1.g.cs
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\TagVisualization1.g.cs
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\App.g.cs
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest_Content.g.cs
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest_MarkupCompile.cache
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest.g.resources
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest.Properties.Resources.resources
+C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest.csproj.GenerateResource.Cache
