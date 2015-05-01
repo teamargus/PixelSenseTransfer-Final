@@ -35,6 +35,7 @@ namespace tagVisualizationTest
         double xAxis = 0;
         double yAxis = 0;
         double orientation = 0;
+        double flashDist = (18 * 2.22) + 39;
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -140,6 +141,8 @@ namespace tagVisualizationTest
             Console.WriteLine(tag.Center.X);
             yAxis = (tag.Center.Y - 540) * 2;
             Console.WriteLine(tag.Center.Y);
+            xAxis = xAxis - flashDist;
+            yAxis = yAxis - 17;
             
         }
 
@@ -203,7 +206,7 @@ namespace tagVisualizationTest
                     {
                         if (binary[i] == '1')
                         {
-                            imgArray[i].Margin = new Thickness(xAxis, yAxis + i * 60, 0, 0);
+                            imgArray[i].Margin = new Thickness(xAxis, yAxis + (i * flashDist), 0, 0);
                             imgArray[i].BeginAnimation(Image.OpacityProperty, fadeInAnimation);
                         }
                     }
@@ -213,7 +216,7 @@ namespace tagVisualizationTest
                 {
                     if (binary[i] == '1')
                     {
-                        imgArray[i].Margin = new Thickness(xAxis, yAxis + i * 60, 0, 0);
+                        imgArray[i].Margin = new Thickness(xAxis, yAxis + (i * flashDist), 0, 0);
                         imgArray[i].BeginAnimation(Image.OpacityProperty, fadeOutAnimation);
                     }
                 }
