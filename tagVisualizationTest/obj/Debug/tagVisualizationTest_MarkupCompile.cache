@@ -5,16 +5,16 @@ winexe
 C#
 .cs
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\
-tagVisualizationTest
+demoSoftware
 none
 false
 DEBUG;TRACE
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\App.xaml
-2819940969
-21534406092
-6885576156
+2-1894953354
+2-1425550699
+10-833557369
 16-1320633307
-SurfaceWindow1.xaml;TagVisualization1.xaml;
+MainWindow.xaml;TagVisualization.xaml;
 
 False
 

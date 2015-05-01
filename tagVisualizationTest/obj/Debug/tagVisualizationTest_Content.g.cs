@@ -9,6 +9,6 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/icon.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("tagvisualizationtest.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("demosoftware.xml")]
 
 

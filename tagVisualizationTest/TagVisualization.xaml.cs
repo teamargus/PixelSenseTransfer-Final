@@ -15,17 +15,17 @@ using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Input;
 
-namespace tagVisualizationTest
+namespace demoSoftware
 {
     /// <summary>
     /// Interaction logic for TagVisualization1.xaml
     /// </summary>
-    public partial class TagVisualization1 : TagVisualization
+    public partial class LynxTagVisualization : TagVisualization
     {
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public TagVisualization1()
+        public LynxTagVisualization()
         {
             InitializeComponent();
         }

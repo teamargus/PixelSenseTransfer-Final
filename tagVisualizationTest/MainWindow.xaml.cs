@@ -23,12 +23,12 @@ using System.Windows.Media.Animation;
 using System.Collections;
 using System.Windows.Threading;
 
-namespace tagVisualizationTest
+namespace demoSoftware
 {
     /// <summary>
     /// Interaction logic for SurfaceWindow1.xaml
     /// </summary>
-    public partial class SurfaceWindow1 : SurfaceWindow
+    public partial class MainWindow : SurfaceWindow
     {
         Image[] imgArray = new Image[10];
         Rectangle[] rectArray = new Rectangle[10];
@@ -39,7 +39,7 @@ namespace tagVisualizationTest
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public SurfaceWindow1()
+        public MainWindow()
         {
             InitializeComponent();
 
@@ -133,16 +133,15 @@ namespace tagVisualizationTest
         /// <param name="e">TagVisualizerEvent Arguments</param>
         private void OnVisualizationAdded(object sender, TagVisualizerEventArgs e)
         {
-            TagVisualization1 tag = (TagVisualization1)e.TagVisualization;
+            LynxTagVisualization tag = (LynxTagVisualization)e.TagVisualization;
 
             Console.WriteLine(tag.VisualizedTag.Value);
             orientation = tag.Orientation;
             xAxis = (tag.Center.X - 960) * 2;
-            Console.WriteLine(tag.Center.X);
             yAxis = (tag.Center.Y - 540) * 2;
-            Console.WriteLine(tag.Center.Y);
             xAxis = xAxis - flashDist;
             yAxis = yAxis - 17;
+            Console.WriteLine(orientation);
             
         }
 
@@ -150,7 +149,7 @@ namespace tagVisualizationTest
 
         private void start_button_Click(object sender, RoutedEventArgs e)
         {
-            string result = transgerStringBuilder("Bet");
+            string result = transferStringBuilder("Bet5034");
             string binary;
             char[] binArray;
             string transferString = result;
@@ -174,13 +173,15 @@ namespace tagVisualizationTest
         /// </summary>
         /// <param name="transferString">string to transfer</param>
         /// <returns>string including null characters in between</returns>
-        private string transgerStringBuilder(string transferString)
+        private string transferStringBuilder(string transferString)
         {
             string BuildString = "";
             for (int i = 0; i < transferString.Length; i++)
             {
-                string temp = transferString[i].ToString();
-                BuildString = BuildString + (temp + '\0' + '\0' + '\0' + '\0' + '\0');
+               string temp = transferString[i].ToString();
+
+               BuildString = BuildString + (temp + '\0' + '\0' + '\0' ); //To keep whitle light stay, decrease no. of nulls.
+
             }
             return BuildString;
         }
@@ -195,8 +196,8 @@ namespace tagVisualizationTest
             {
                 int binLength = binary.Length;
                 //no. miliseconds delay, last point
-                TimeSpan fadeInTime = new TimeSpan(0, 0, 0, 0, 20); //keep it similar to ThreadSleep
-                TimeSpan fadeOutTime = new TimeSpan(0, 0, 0, 0, 20); //keep it similar to ThreadSleep
+                TimeSpan fadeInTime = new TimeSpan(0, 0, 0, 0, 50); //keep it similar to ThreadSleep--------Timing
+                TimeSpan fadeOutTime = new TimeSpan(0, 0, 0, 0, 50); //keep it similar to ThreadSleep-------Timing
                 var fadeInAnimation = new DoubleAnimation(0d, fadeInTime);
                 var fadeOutAnimation = new DoubleAnimation(1d, fadeOutTime);
 
@@ -204,6 +205,7 @@ namespace tagVisualizationTest
                 {
                     for (int i = 0; i < binLength; i++)
                     {
+                   
                         if (binary[i] == '1')
                         {
                             imgArray[i].Margin = new Thickness(xAxis, yAxis + (i * flashDist), 0, 0);
@@ -211,7 +213,7 @@ namespace tagVisualizationTest
                         }
                     }
                 };
-                Thread.Sleep(20); //keep it similar to FadeIn and FadeOut
+                Thread.Sleep(50); //keep it similar to FadeIn and FadeOut -----------------------------------Timing
                 for (int i = 0; i < binLength; i++)
                 {
                     if (binary[i] == '1')
@@ -234,7 +236,8 @@ namespace tagVisualizationTest
 
             result += Convert.ToString((int)asciiString, 2);
 
-            return result;
+           return result;
+            
         }
         #endregion
 

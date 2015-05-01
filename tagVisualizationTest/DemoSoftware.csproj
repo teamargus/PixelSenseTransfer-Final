@@ -8,7 +8,7 @@
     <ProjectGuid>{59BAE7BB-7B35-4FA7-9F7D-E8E9F49AB219}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>tagVisualizationTest</RootNamespace>
+    <RootNamespace>demoSoftware</RootNamespace>
     <AssemblyName>tagVisualizationTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -58,10 +58,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TagVisualization1.xaml.cs">
-      <DependentUpon>TagVisualization1.xaml</DependentUpon>
+    <Compile Include="GameController.cs" />
+    <Compile Include="Card.cs" />
+    <Compile Include="Deck.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="TagVisualization.xaml.cs">
+      <DependentUpon>TagVisualization.xaml</DependentUpon>
     </Compile>
-    <Page Include="SurfaceWindow1.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -69,11 +73,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SurfaceWindow1.xaml.cs">
-      <DependentUpon>SurfaceWindow1.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TagVisualization1.xaml">
+    <Page Include="TagVisualization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -104,11 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="flash.png" />
-    <Resource Include="Bitmap1.bmp" />
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="tagVisualizationTest.xml">
+    <Content Include="demoSoftware.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
