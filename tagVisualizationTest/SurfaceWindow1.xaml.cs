@@ -55,8 +55,6 @@ namespace tagVisualizationTest
             imgArray[7] = img8;
             imgArray[8] = img9;
             imgArray[9] = img10;
-
-
         }
 
 
@@ -138,8 +136,11 @@ namespace tagVisualizationTest
 
             Console.WriteLine(tag.VisualizedTag.Value);
             orientation = tag.Orientation;
-            xAxis = tag.Center.X - 960;
-            yAxis = tag.Center.Y - 540;
+            xAxis = (tag.Center.X - 960) * 2;
+            Console.WriteLine(tag.Center.X);
+            yAxis = (tag.Center.Y - 540) * 2;
+            Console.WriteLine(tag.Center.Y);
+            
         }
 
         #region TransferStuff

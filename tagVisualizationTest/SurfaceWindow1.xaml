@@ -4,25 +4,25 @@
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     Title="tagVisualizationTest"
     >
-  <Grid>
-        <Image x:Name="img1" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-        <Image x:Name="img2" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-        <Image x:Name="img3" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-        <Image x:Name="img4" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-        <Image x:Name="img5" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-        <Image x:Name="img6" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-        <Image x:Name="img7" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-        <Image x:Name="img8" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-        <Image x:Name="img9" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-        <Image x:Name="img10" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-
+  <Grid MinHeight="1080" MinWidth="1920">
+            <Image x:Name="img1" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+            <Image x:Name="img2" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+            <Image x:Name="img3" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+            <Image x:Name="img4" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+            <Image x:Name="img5" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+            <Image x:Name="img6" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+            <Image x:Name="img7" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+            <Image x:Name="img8" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+            <Image x:Name="img9" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+            <Image x:Name="img10" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+        
         <s:TagVisualizer Name="myTag"             
             VisualizationAdded="OnVisualizationAdded">
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Value="0"
                     Source="TagVisualization1.xaml"
                     UsesTagOrientation="True"
-                    TagRemovedBehavior="Fade"
+                    TagRemovedBehavior="Disappear"
                     />
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
@@ -30,6 +30,6 @@
         <Button Content="Start" Height="23" HorizontalAlignment="Left" Margin="500,514,0,0" Name="button0" VerticalAlignment="Top" Width="75" Click="start_button_Click" />
        
 
-        
+
     </Grid>
 </s:SurfaceWindow>

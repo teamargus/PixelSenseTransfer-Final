@@ -22,7 +22,6 @@ C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\Re
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.xml
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.exe
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.pdb
-C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\DemoSoftware.csprojResolveAssemblyReference.cache
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\SurfaceWindow1.baml
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\TagVisualization1.baml
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\App.baml
@@ -34,3 +33,4 @@ C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\ta
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\tagVisualizationTest.g.resources
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\tagVisualizationTest.Properties.Resources.resources
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\DemoSoftware.csproj.GenerateResource.Cache
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\DemoSoftware.csprojResolveAssemblyReference.cache

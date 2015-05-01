@@ -1,48 +1,142 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-This file contains the information needed to install your application
-with the Surface Shell. Please refer to the documentation for deployment
-instructions.
--->
-<ss:ApplicationInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ss="http://schemas.microsoft.com/Surface/2007/ApplicationMetadata">
-  <Application>
-    <Title>tagVisualizationTest</Title>
-    <Description>tagVisualizationTest</Description>
-    <ExecutableFile>tagVisualizationTest.exe</ExecutableFile>
-    <Arguments>
-    </Arguments>
-    <IconImageFile>Resources\icon.png</IconImageFile>
-    <Tags>
-      <!--
-      If your application uses tagged objects, please uncomment this section to register the tags with the Shell. 
-      You can register Tags by using the appropriate instructions below.
-      -->
-      <!--
-      To register a specific value Tag:
-      1. Please uncomment the Tag Element below.
-      2. Replace "C0" below with the value of your Tag (in hexadecimal format). Repeat this section (this element and its children) for other Tags
-      3. Please remove the Launch element if you do not want to register the tag with Object Routing.
-      -->
-      <!--
-      <Tag Value="0xC0">
-        <Actions>
-          <Launch />
-        </Actions>
-      </Tag>
-      -->
-      <!--
-      To register all Tags in a series:
-      1. Please uncomment the Tag Element below.
-      2. Replace "0000000000000000" below with the series of your Tag (in hexadecimal format). Repeat this section (this element and its children) for other Tags
-      3. Please remove the Launch element if you do not want to register the tag with Object Routing.
-      -->
-      <!--
-      <Tag Series="0x0000000000000000">
-        <Actions>
-          <Launch /> 
-        </Actions>
-      </Tag>
-      -->
-    </Tags>
-  </Application>
-</ss:ApplicationInfo>
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>tagVisualizationTest</name>
+    </assembly>
+    <members>
+        <member name="T:tagVisualizationTest.TagVisualization1">
+            <summary>
+            Interaction logic for TagVisualization1.xaml
+            </summary>
+            <summary>
+            TagVisualization1
+            </summary>
+        </member>
+        <member name="M:tagVisualizationTest.TagVisualization1.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:tagVisualizationTest.TagVisualization1.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:tagVisualizationTest.SurfaceWindow1">
+            <summary>
+            Interaction logic for SurfaceWindow1.xaml
+            </summary>
+            <summary>
+            SurfaceWindow1
+            </summary>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.OnClosed(System.EventArgs)">
+            <summary>
+            Occurs when the window is about to close. 
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.AddWindowAvailabilityHandlers">
+            <summary>
+            Adds handlers for window availability events.
+            </summary>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.RemoveWindowAvailabilityHandlers">
+            <summary>
+            Removes handlers for window availability events.
+            </summary>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.OnWindowInteractive(System.Object,System.EventArgs)">
+            <summary>
+            This is called when the user can interact with the application's window.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.OnWindowNoninteractive(System.Object,System.EventArgs)">
+            <summary>
+            This is called when the user can see but not interact with the application's window.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.OnWindowUnavailable(System.Object,System.EventArgs)">
+            <summary>
+            This is called when the application's window is not visible or interactive.
+            </summary>
+            <param name="sender">object sender</param>
+            <param name="e">Event Arguments</param>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.OnVisualizationAdded(System.Object,Microsoft.Surface.Presentation.Controls.TagVisualizerEventArgs)">
+            <summary>
+            This function recognises tag, and gets relative x and y axis. It also gets orientation of the tag.
+            </summary>
+            <param name="sender">object sender</param>
+            <param name="e">TagVisualizerEvent Arguments</param>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.transgerStringBuilder(System.String)">
+            <summary>
+            This method builds the transfer String with addition null characters between each transfer character.
+            </summary>
+            <param name="transferString">string to transfer</param>
+            <returns>string including null characters in between</returns>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.blink(System.String)">
+            <summary>
+            This method actually blinks the binary flashes on table
+            </summary>
+            <param name="binary">binary String with null characters</param>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.ConvertToBinary(System.Char)">
+            <summary>
+            This method converts character to binary string
+            </summary>
+            <param name="asciiString">ascii character</param>
+            <returns>binary string</returns>
+        </member>
+        <member name="M:tagVisualizationTest.SurfaceWindow1.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:tagVisualizationTest.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:tagVisualizationTest.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:tagVisualizationTest.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:tagVisualizationTest.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:tagVisualizationTest.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:tagVisualizationTest.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

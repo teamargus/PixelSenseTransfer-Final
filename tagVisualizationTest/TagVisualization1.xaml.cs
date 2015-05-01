@@ -22,6 +22,9 @@ namespace tagVisualizationTest
     /// </summary>
     public partial class TagVisualization1 : TagVisualization
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public TagVisualization1()
         {
             InitializeComponent();

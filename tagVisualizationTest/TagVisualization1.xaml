@@ -4,6 +4,5 @@
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     Loaded="TagVisualization1_Loaded">
     <Grid>
-        <Polygon Points="50,0, 0,100, 100,100" Stroke="Black" Fill="White" />
     </Grid>
 </s:TagVisualization>
