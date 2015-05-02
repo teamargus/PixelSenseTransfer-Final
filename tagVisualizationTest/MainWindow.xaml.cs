@@ -34,8 +34,18 @@ namespace demoSoftware
         Rectangle[] rectArray = new Rectangle[10];
         double xAxis = 0;
         double yAxis = 0;
+        double x1Axis = 0;
+        double y1Axis = 0;
+        double x1AxisUpdated = 0;
+        double y1AxisUpdated = 0;
         double orientation = 0;
         double flashDist = (18 * 2.22) + 39;
+
+
+        private Line myLine;
+        private Line myLine1;
+        private Line myLine2;
+        private Line myLine3;
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -137,24 +147,99 @@ namespace demoSoftware
 
             Console.WriteLine(tag.VisualizedTag.Value);
             orientation = tag.Orientation;
+            x1Axis = tag.Center.X;
+            y1Axis = tag.Center.Y;
             xAxis = (tag.Center.X - 960) * 2;
             yAxis = (tag.Center.Y - 540) * 2;
             xAxis = xAxis - flashDist;
-            yAxis = yAxis - 17;
+            yAxis = yAxis + 52;
+            x1AxisUpdated = x1Axis + (16 * 2.22);
+            y1AxisUpdated = y1Axis - ((18 * 2.22) + 14);
             Console.WriteLine(orientation);
-            
+            //drawboxes(x1Axis, y1Axis);
+            //drawboxes(x1AxisUpdated, y1AxisUpdated);
+
+            for (int i = 1; i < 9; i++)
+            {
+                drawboxes(x1AxisUpdated, y1AxisUpdated + (i * (18 * 2.22)));
+               
+            }
         }
 
-        #region TransferStuff
+        private void OnVisualizationRemoved(object sender, TagVisualizerEventArgs e)
+        {
+            myLine.Stroke = System.Windows.Media.Brushes.Black;
+            myLine1.Stroke = System.Windows.Media.Brushes.Black;
+            myLine2.Stroke = System.Windows.Media.Brushes.Black;
+            myLine3.Stroke = System.Windows.Media.Brushes.Black;
+        }
+
+        #region RecieveStuff
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x1Axis"></param>
+        /// <param name="y1Axis"></param>
+        public void drawboxes(double x1Axis, double y1Axis)
+        {
+
+            x1Axis = x1Axis - 12;
+            y1Axis = y1Axis - 12;
+            Console.WriteLine(x1Axis);
+            Console.WriteLine(y1Axis);
+            int boxSize = 24;
+
+            myLine = new Line();
+            myLine.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            myLine.X1 = x1Axis;
+            myLine.X2 = x1Axis + boxSize;
+            myLine.Y1 = y1Axis;
+            myLine.Y2 = y1Axis;
+            myLine.StrokeThickness = 1;
+            myGrid.Children.Add(myLine);
+
+            myLine1 = new Line();
+            myLine1.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            myLine1.X1 = x1Axis;
+            myLine1.X2 = x1Axis;
+            myLine1.Y1 = y1Axis;
+            myLine1.Y2 = y1Axis + boxSize;
+            myLine1.StrokeThickness = 1;
+            myGrid.Children.Add(myLine1);
+
+            myLine2 = new Line();
+            myLine2.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            myLine2.X1 = x1Axis + boxSize;
+            myLine2.X2 = x1Axis + boxSize;
+            myLine2.Y1 = y1Axis;
+            myLine2.Y2 = y1Axis + boxSize;
+            myLine2.StrokeThickness = 1;
+            myGrid.Children.Add(myLine2);
+
+            myLine3 = new Line();
+            myLine3.Stroke = System.Windows.Media.Brushes.LightSteelBlue;
+            myLine3.X1 = x1Axis;
+            myLine3.X2 = x1Axis + boxSize;
+            myLine3.Y1 = y1Axis + boxSize;
+            myLine3.Y2 = y1Axis + boxSize;
+            myLine3.StrokeThickness = 1;
+            myGrid.Children.Add(myLine3);
+        }
+
+        #endregion
+
+        #region SendStuff
 
         private void start_button_Click(object sender, RoutedEventArgs e)
         {
-            string result = transferStringBuilder("Bet5034");
+            string result = transferStringBuilder("~");
             string binary;
             char[] binArray;
             string transferString = result;
             binArray = transferString.ToCharArray();
             int location = 0;
+            
             while (true)
             {
                 while (location < transferString.Length)

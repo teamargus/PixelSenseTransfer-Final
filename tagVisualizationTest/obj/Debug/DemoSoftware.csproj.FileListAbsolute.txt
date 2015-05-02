@@ -34,3 +34,4 @@ C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\ta
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\tagVisualizationTest.exe
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\tagVisualizationTest.pdb
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\demoSoftware.xml
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\DemoSoftware.csprojResolveAssemblyReference.cache

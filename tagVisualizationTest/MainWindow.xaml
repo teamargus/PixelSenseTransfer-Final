@@ -4,7 +4,7 @@
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     Title="Demo Software"
     >
-  <Grid MinHeight="1080" MinWidth="1920">
+  <Grid Name="myGrid" MinHeight="1080" MinWidth="1920">
             <Image x:Name="img1" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
             <Image x:Name="img2" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
             <Image x:Name="img3" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
@@ -17,18 +17,22 @@
             <Image x:Name="img10" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
         
         <s:TagVisualizer Name="myTag"             
-            VisualizationAdded="OnVisualizationAdded">
+            VisualizationAdded="OnVisualizationAdded"
+            VisualizationRemoved="OnVisualizationRemoved">
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Value="0"
                     Source="TagVisualization.xaml"
                     UsesTagOrientation="True"
                     TagRemovedBehavior="Disappear"
                     />
+             
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
 
-        <Button Content="Start" Height="23" HorizontalAlignment="Left" Margin="1600,514,0,0" Name="button0" VerticalAlignment="Top" Width="75" Click="start_button_Click" />
-       
+         
+            <Button Content="Start" Height="23" HorizontalAlignment="Left" Margin="1600,514,0,0" Name="button0" VerticalAlignment="Top" Width="75" Click="start_button_Click" />
+
+        
 
 
     </Grid>

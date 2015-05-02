@@ -4,167 +4,6 @@
         <name>tagVisualizationTest</name>
     </assembly>
     <members>
-        <member name="T:demoSoftware.App">
-            <summary>
-            Interaction logic for App.xaml
-            </summary>
-            <summary>
-            App
-            </summary>
-        </member>
-        <member name="M:demoSoftware.App.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="M:demoSoftware.App.Main">
-            <summary>
-            Application Entry Point.
-            </summary>
-        </member>
-        <member name="T:demoSoftware.Properties.Resources">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:demoSoftware.Properties.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:demoSoftware.Properties.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="T:demoSoftware.Card">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:demoSoftware.Card.#ctor(System.Int32,System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="v"></param>
-            <param name="f"></param>
-            <param name="s"></param>
-        </member>
-        <member name="M:demoSoftware.Card.getValue">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:demoSoftware.Card.getFace">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:demoSoftware.Card.getSuit">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:demoSoftware.Card.setValue(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="val"></param>
-        </member>
-        <member name="M:demoSoftware.Card.setFace(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="val"></param>
-        </member>
-        <member name="M:demoSoftware.Card.setSuit(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="val"></param>
-        </member>
-        <member name="M:demoSoftware.Card.toString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:demoSoftware.Player">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:demoSoftware.Player.#ctor(System.Int32,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="wallet"></param>
-            <param name="id"></param>
-        </member>
-        <member name="M:demoSoftware.Player.setWallet(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="val"></param>
-        </member>
-        <member name="M:demoSoftware.Player.setID(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="val"></param>
-        </member>
-        <member name="M:demoSoftware.Player.setScore(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="val"></param>
-        </member>
-        <member name="M:demoSoftware.Player.setHand(System.Collections.Generic.List{demoSoftware.Card})">
-            <summary>
-            
-            </summary>
-            <param name="val"></param>
-        </member>
-        <member name="M:demoSoftware.Player.getWallet">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:demoSoftware.Player.getID">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:demoSoftware.Player.getScore">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:demoSoftware.Player.getHand">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:demoSoftware.Player.handString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:demoSoftware.Player.toString">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:demoSoftware.Deck">
             <summary>
             
@@ -255,6 +94,13 @@
             <param name="sender">object sender</param>
             <param name="e">TagVisualizerEvent Arguments</param>
         </member>
+        <member name="M:demoSoftware.MainWindow.drawboxes(System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="x1Axis"></param>
+            <param name="y1Axis"></param>
+        </member>
         <member name="M:demoSoftware.MainWindow.transferStringBuilder(System.String)">
             <summary>
             This method builds the transfer String with addition null characters between each transfer character.
@@ -276,24 +122,6 @@
             <returns>binary string</returns>
         </member>
         <member name="M:demoSoftware.MainWindow.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:demoSoftware.LynxTagVisualization">
-            <summary>
-            Interaction logic for TagVisualization1.xaml
-            </summary>
-            <summary>
-            LynxTagVisualization
-            </summary>
-        </member>
-        <member name="M:demoSoftware.LynxTagVisualization.#ctor">
-            <summary>
-            Default constructor.
-            </summary>
-        </member>
-        <member name="M:demoSoftware.LynxTagVisualization.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
@@ -360,6 +188,185 @@
             <returns></returns>
         </member>
         <member name="M:demoSoftware.GameController.gameOverState">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:demoSoftware.LynxTagVisualization">
+            <summary>
+            Interaction logic for TagVisualization1.xaml
+            </summary>
+            <summary>
+            LynxTagVisualization
+            </summary>
+        </member>
+        <member name="M:demoSoftware.LynxTagVisualization.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:demoSoftware.LynxTagVisualization.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:demoSoftware.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:demoSoftware.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:demoSoftware.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:demoSoftware.Card">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:demoSoftware.Card.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="v"></param>
+            <param name="f"></param>
+            <param name="s"></param>
+        </member>
+        <member name="M:demoSoftware.Card.getValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:demoSoftware.Card.getFace">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:demoSoftware.Card.getSuit">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:demoSoftware.Card.setValue(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="val"></param>
+        </member>
+        <member name="M:demoSoftware.Card.setFace(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="val"></param>
+        </member>
+        <member name="M:demoSoftware.Card.setSuit(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="val"></param>
+        </member>
+        <member name="M:demoSoftware.Card.toString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:demoSoftware.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:demoSoftware.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:demoSoftware.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:demoSoftware.Player">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:demoSoftware.Player.#ctor(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="wallet"></param>
+            <param name="id"></param>
+        </member>
+        <member name="M:demoSoftware.Player.setWallet(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="val"></param>
+        </member>
+        <member name="M:demoSoftware.Player.setID(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="val"></param>
+        </member>
+        <member name="M:demoSoftware.Player.setScore(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="val"></param>
+        </member>
+        <member name="M:demoSoftware.Player.setHand(System.Collections.Generic.List{demoSoftware.Card})">
+            <summary>
+            
+            </summary>
+            <param name="val"></param>
+        </member>
+        <member name="M:demoSoftware.Player.getWallet">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:demoSoftware.Player.getID">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:demoSoftware.Player.getScore">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:demoSoftware.Player.getHand">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:demoSoftware.Player.handString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:demoSoftware.Player.toString">
             <summary>
             
             </summary>
