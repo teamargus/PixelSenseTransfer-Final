@@ -16,6 +16,11 @@ C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-mast
 C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\DemoSoftware.csproj.GenerateResource.Cache
 C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest.exe
 C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest.pdb
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\Resources\icon.png
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\demoSoftware.xml
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.XML
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.exe
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.pdb
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\MainWindow.baml
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\TagVisualization.baml
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\App.baml
@@ -27,11 +32,5 @@ C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\ta
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\tagVisualizationTest.g.resources
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\demoSoftware.Properties.Resources.resources
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\DemoSoftware.csproj.GenerateResource.Cache
-C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.xml
-C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\Resources\icon.png
-C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.exe
-C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.pdb
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\tagVisualizationTest.exe
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\tagVisualizationTest.pdb
-C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\demoSoftware.xml
-C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\DemoSoftware.csprojResolveAssemblyReference.cache

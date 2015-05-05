@@ -94,12 +94,13 @@
             <param name="sender">object sender</param>
             <param name="e">TagVisualizerEvent Arguments</param>
         </member>
-        <member name="M:demoSoftware.MainWindow.drawboxes(System.Double,System.Double)">
+        <member name="M:demoSoftware.MainWindow.drawboxes(System.Double,System.Double,System.Double)">
             <summary>
             
             </summary>
             <param name="x1Axis"></param>
             <param name="y1Axis"></param>
+            <param name="angle"></param>
         </member>
         <member name="M:demoSoftware.MainWindow.transferStringBuilder(System.String)">
             <summary>

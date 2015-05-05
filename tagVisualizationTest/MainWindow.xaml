@@ -4,8 +4,12 @@
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     Title="Demo Software"
     >
-  <Grid Name="myGrid" MinHeight="1080" MinWidth="1920">
-            <Image x:Name="img1" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+  <Grid Name="myGrid" MinHeight="1080" MinWidth="1920" 
+       TouchDown="onTouchDown" >
+        <!--  <Grid.Background>
+            <ImageBrush ImageSource="background.png"/>
+        </Grid.Background> -->
+        <Image x:Name="img1" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
             <Image x:Name="img2" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
             <Image x:Name="img3" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
             <Image x:Name="img4" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
@@ -18,7 +22,8 @@
         
         <s:TagVisualizer Name="myTag"             
             VisualizationAdded="OnVisualizationAdded"
-            VisualizationRemoved="OnVisualizationRemoved">
+            VisualizationRemoved="OnVisualizationRemoved"
+            VisualizationMoved="OnVisualizationMoved">
             <s:TagVisualizer.Definitions>
                 <s:TagVisualizationDefinition Value="0"
                     Source="TagVisualization.xaml"

@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="flash.png" />
+    <Resource Include="background.png" />
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
