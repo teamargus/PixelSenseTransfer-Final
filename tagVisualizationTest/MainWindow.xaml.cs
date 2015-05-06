@@ -35,15 +35,17 @@ namespace demoSoftware
         double yAxisSend = 0;
         double xAxisRecieve = 0;
         double yAxisRecieve = 0;
-        double x1AxisRecieve = 0;
-        double y1AxisRecieve = 0;
+        double xAxisTag = 0;
+        double yAxisTag = 0;
         double x1AxisRecieveUpdated = 0;
         double y1AxisRecieveUpdated = 0;
         double orientation = 0;
         double flashDist = (18 * 2.22) + 39;
+        string temp2 = "";
         List<double> temp = new List<double>();
         List<double> temp1 = new List<double>();
         List<char> binArray = new List<char>();
+        List<TouchPoint> AllPoints = new List<TouchPoint>();
 
 
         private Line[] lineList = new Line[32];
@@ -54,7 +56,7 @@ namespace demoSoftware
         public MainWindow()
         {
             InitializeComponent();
-
+            Touch.FrameReported += new TouchFrameEventHandler(Touch_FrameReported);
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
 
@@ -152,39 +154,40 @@ namespace demoSoftware
         /// <param name="e">TagVisualizerEvent Arguments</param>
         private void OnVisualizationAdded(object sender, TagVisualizerEventArgs e)
         {
+           textBox.Clear();
             LynxTagVisualization tag = (LynxTagVisualization)e.TagVisualization;
 
        //     Console.WriteLine(tag.VisualizedTag.Value);
             orientation = tag.Orientation;
-            x1AxisRecieve = tag.Center.X;
-            y1AxisRecieve = tag.Center.Y;
+            xAxisTag = tag.Center.X;
+            yAxisTag = tag.Center.Y;
             xAxisSend = (tag.Center.X - 960) * 2;
             yAxisSend = (tag.Center.Y - 540) * 2;
-            xAxisSend = xAxisSend - flashDist;
-            yAxisSend = yAxisSend + 52;
-            x1AxisRecieveUpdated = x1AxisRecieve + (16 * 2.22);
-            y1AxisRecieveUpdated = y1AxisRecieve - ((18 * 2.22) + 14);
+            xAxisSend = xAxisSend - (flashDist - 20);
+            yAxisSend = yAxisSend + (2.75 * 45 * 2.22);
+            x1AxisRecieveUpdated = xAxisTag + (flashDist - 40);
+            y1AxisRecieveUpdated = yAxisTag + ((26 * 2.22));
         //    Console.WriteLine(orientation);
 
             for (int i = 1; i < 9; i++)
             {
                 drawboxes(x1AxisRecieveUpdated, y1AxisRecieveUpdated + (i * (18 * 2.22)),orientation);
-               
             }
         }
 
         private void OnVisualizationMoved(object sender, TagVisualizerEventArgs e)
         {
+
             LynxTagVisualization tag = (LynxTagVisualization)e.TagVisualization;
             orientation = tag.Orientation;
-            x1AxisRecieve = tag.Center.X;
-            y1AxisRecieve = tag.Center.Y;
+            xAxisTag = tag.Center.X;
+            yAxisTag = tag.Center.Y;
             xAxisSend = (tag.Center.X - 960) * 2;
             yAxisSend = (tag.Center.Y - 540) * 2;
-            xAxisSend = xAxisSend - flashDist;
-            yAxisSend = yAxisSend + 52;
-            x1AxisRecieveUpdated = x1AxisRecieve + (16 * 2.22);
-            y1AxisRecieveUpdated = y1AxisRecieve - ((18 * 2.22) + 14);
+            xAxisSend = xAxisSend - (flashDist - 20);
+            yAxisSend = yAxisSend + (2.75 * 45 * 2.22);
+            x1AxisRecieveUpdated = xAxisTag + (flashDist - 40);
+            y1AxisRecieveUpdated = yAxisTag + ((26 * 2.22));
             int intTotalChildren = myGrid.Children.Count - 1;
             for (int intCounter = intTotalChildren; intCounter >= 0; intCounter--)
             {
@@ -206,7 +209,6 @@ namespace demoSoftware
 
         private void OnVisualizationRemoved(object sender, TagVisualizerEventArgs e)
         {
-
             int intTotalChildren = myGrid.Children.Count - 1;
             for (int intCounter = intTotalChildren; intCounter >= 0; intCounter--)
             {
@@ -217,9 +219,11 @@ namespace demoSoftware
                 }
             }
 
+
+            
             string transferredString = "";
 
-            for (int i = 0; i < binArray.Count - 1; i = i+2)
+            for (int i = 0; i < binArray.Count-1; i = i+2)
             {
                 //Console.WriteLine(binArray[i]);
                 string hexChar = (binArray[i].ToString() + binArray[i + 1].ToString());
@@ -227,8 +231,11 @@ namespace demoSoftware
                 Console.WriteLine(hexChar);
                 transferredString = transferredString + BinaryToString(hexChar);
 
-                Console.WriteLine(transferredString);
+                textBox.Text = transferredString;
+                
             }
+            binArray.Clear();
+            transferredString="";
             temp.Clear();
             temp1.Clear();
 
@@ -240,132 +247,170 @@ namespace demoSoftware
 
         void onTouchDown(object sender, TouchEventArgs e)
         {
+            ///For each item in list
+            ///xAxisReceive=list[i].position.x
+            //yAxisTag = yAxisTag - 100;
+
             Point touchPosition = e.TouchDevice.GetPosition(this);
             xAxisRecieve = touchPosition.X;
             yAxisRecieve = touchPosition.Y;
+            string[] binString = new string[] { "0", "0", "0", "0", "0", "0", "0", "0" };
             
+           
+            //Console.WriteLine("xAxis=" + xAxisRecieve);
+        //    Console.WriteLine("yAxis=" + yAxisRecieve);
+            //Console.WriteLine("lineList[0].X1: " + lineList[0].X1 + "   lineList[0].X2:  " + lineList[0].X2);
+         //   Console.WriteLine("temp[0]-24: " + (temp[0]-24) + "   temp[0]:  " + temp[0]);
+            //for (int i=0 ; i < AllPointsList.Count; i++)
+            //{
+                //xAxisRecieve = AllPointsList[i].Position.X;
+                //yAxisRecieve = AllPointsList[i].Position.Y;
+                if (xAxisRecieve > xAxisTag && xAxisRecieve < (xAxisTag + 200) &&
+                yAxisRecieve > yAxisTag && yAxisRecieve < (yAxisTag + 1000))
 
-         //Console.WriteLine("xAxis=" + xAxisRecieve);
-          //Console.WriteLine("yAxis=" + yAxisRecieve);
+                {
+                    if (xAxisRecieve > lineList[0].X1 && xAxisRecieve < lineList[0].X2 &&
+                       yAxisRecieve > temp[0 * 8] - 24 && yAxisRecieve < (temp[0 * 8]))
+                    {
+                        //Console.WriteLine("0");
+                        //binString[0] = "1";
+                        binArray.Add('0');
+                    }
 
-            if (xAxisRecieve > x1AxisRecieve && xAxisRecieve < (x1AxisRecieve + 200) &&
-                yAxisRecieve > y1AxisRecieve && yAxisRecieve < (y1AxisRecieve + 500))
+                    if (xAxisRecieve > lineList[4].X1 && xAxisRecieve < lineList[4].X2 &&
+                        yAxisRecieve > temp[1 * 8] - 24 && yAxisRecieve < temp[1 * 8])
+                    {
+                        //Console.WriteLine("1");
+                        //binString[1] = "1";
+                        binArray.Add('1');
+                    }
+
+                    if (xAxisRecieve > lineList[8].X1 && xAxisRecieve < lineList[8].X2 &&
+                        yAxisRecieve > temp[2 * 8] - 24 && yAxisRecieve < temp[2 * 8])
+                    {
+                        //Console.WriteLine("2");
+                        //binString[2] = "1";
+                        binArray.Add('2');
+                    }
+
+                    if (xAxisRecieve > lineList[12].X1 && xAxisRecieve < lineList[12].X2 &&
+                        yAxisRecieve > temp[3 * 8] - 24 && yAxisRecieve < temp[3 * 8])
+                    {
+                        //Console.WriteLine("3");
+                        //binString[3] = "1";
+                        binArray.Add('3');
+                    }
+
+                    if (xAxisRecieve > lineList[16].X1 && xAxisRecieve < lineList[16].X2 &&
+                       yAxisRecieve > temp[4 * 8] - 24 && yAxisRecieve < temp[4 * 8])
+                    {
+                        //Console.WriteLine("4");
+                        //binString[4] = "1";
+                        binArray.Add('4');
+                    }
+
+                    if (xAxisRecieve > lineList[20].X1 && xAxisRecieve < lineList[20].X2 &&
+                        yAxisRecieve > temp[5 * 8] - 24 && yAxisRecieve < temp[5 * 8])
+                    {
+                        //Console.WriteLine("5");
+                        //binString[5] = "1";
+                        binArray.Add('5');
+                    }
+
+                    if (xAxisRecieve > lineList[24].X1 && xAxisRecieve < lineList[24].X2 &&
+                       yAxisRecieve > temp[6 * 8] - 24 && yAxisRecieve < temp[6 * 8])
+                    {
+                        //Console.WriteLine("6");
+                        //binString[6] = "1";
+                        binArray.Add('6');
+                    }
+
+                    if (xAxisRecieve > lineList[28].X1 && xAxisRecieve < lineList[28].X2 &&
+                       yAxisRecieve > temp[7 * 8] - 24 && yAxisRecieve < temp[7 * 8])
+                    {
+                        //Console.WriteLine("7");
+                        //binString[7] = "1";
+                        binArray.Add('7');
+                    }
+
+                    if (xAxisRecieve > lineList2[0].X1 && xAxisRecieve < lineList2[0].X2 &&
+                       yAxisRecieve > temp1[0 * 8] - 24 && yAxisRecieve < (temp1[0 * 8] + 10))
+                    {
+                        //Console.WriteLine("8");
+                        //binString[8] = "1";
+                        binArray.Add('8');
+                    }
+
+                    if (xAxisRecieve > lineList2[4].X1 && xAxisRecieve < lineList2[4].X2 &&
+                        yAxisRecieve > temp1[1 * 8] - 24 && yAxisRecieve < temp1[1 * 8])
+                    {
+                        //Console.WriteLine("9");
+                        binArray.Add('9');
+                    }
+
+                    if (xAxisRecieve > lineList2[8].X1 && xAxisRecieve < lineList2[8].X2 &&
+                        yAxisRecieve > temp1[2 * 8] - 24 && yAxisRecieve < temp1[2 * 8])
+                    {
+                        //Console.WriteLine("a");
+                        binArray.Add('a');
+                    }
+
+                    if (xAxisRecieve > lineList2[12].X1 && xAxisRecieve < lineList2[12].X2 &&
+                        yAxisRecieve > temp1[3 * 8] - 24 && yAxisRecieve < temp1[3 * 8])
+                    {
+                        //Console.WriteLine("b");
+                        binArray.Add('b');
+                    }
+
+                    if (xAxisRecieve > lineList2[16].X1 && xAxisRecieve < lineList2[16].X2 &&
+                       yAxisRecieve > temp1[4 * 8] - 24 && yAxisRecieve < temp1[4 * 8])
+                    {
+                        //Console.WriteLine("c");
+                        binArray.Add('c');
+                    }
+
+                    if (xAxisRecieve > lineList2[20].X1 && xAxisRecieve < lineList2[20].X2 &&
+                        yAxisRecieve > temp1[5 * 8] - 24 && yAxisRecieve < temp1[5 * 8])
+                    {
+                        //Console.WriteLine("d");
+                        binArray.Add('d');
+                    }
+
+                    if (xAxisRecieve > lineList2[24].X1 && xAxisRecieve < lineList2[24].X2 &&
+                       yAxisRecieve > temp1[6 * 8] - 24 && yAxisRecieve < temp1[6 * 8])
+                    {
+                        //Console.WriteLine("e");
+                        binArray.Add('e');
+                    }
+
+                    if (xAxisRecieve > lineList2[28].X1 && xAxisRecieve < lineList2[28].X2 &&
+                       yAxisRecieve > temp1[7 * 8] - 24 && yAxisRecieve < temp1[7 * 8])
+                    {
+                        //Console.WriteLine("f");
+                        binArray.Add('f');
+                    }
+
+                }
+            //}
+            
+            //Console.WriteLine("binaryString: " + binString);
+            
+        }
+
+        void Touch_FrameReported(object sender, TouchFrameEventArgs e)
+        {
+            foreach (TouchPoint _touchPoint in e.GetTouchPoints(this.myGrid))
             {
-
-                if (xAxisRecieve > lineList[0].X1 && xAxisRecieve < lineList[0].X2 &&
-                   yAxisRecieve > temp[0*8]-24 && yAxisRecieve < temp[0*8])
+                //Console.WriteLine(_touchPoint.TouchDevice.GetIsTagRecognized());
+                if (!_touchPoint.TouchDevice.GetIsTagRecognized() && !_touchPoint.TouchDevice.GetIsFingerRecognized())
                 {
-                    //Console.WriteLine("0");
-                    binArray.Add('0');
-                }
+                    
+                    AllPoints.Add(_touchPoint);
 
-                if (xAxisRecieve > lineList[4].X1 && xAxisRecieve < lineList[4].X2 &&
-                    yAxisRecieve > temp[1 * 8] - 24 && yAxisRecieve < temp[1 * 8])
-                {
-                    //Console.WriteLine("1");
-                    binArray.Add('1');
                 }
-
-                if (xAxisRecieve > lineList[8].X1 && xAxisRecieve < lineList[8].X2 &&
-                    yAxisRecieve > temp[2 * 8] - 24 && yAxisRecieve < temp[2 * 8])
-                {
-                    //Console.WriteLine("2");
-                    binArray.Add('2');
-                }
-
-                if (xAxisRecieve > lineList[12].X1 && xAxisRecieve < lineList[12].X2 &&
-                    yAxisRecieve > temp[3 * 8] - 24 && yAxisRecieve < temp[3 * 8])
-                {
-                    //Console.WriteLine("3");
-                    binArray.Add('3');
-                }
-
-                if (xAxisRecieve > lineList[16].X1 && xAxisRecieve < lineList[16].X2 &&
-                   yAxisRecieve > temp[4*8]-24 && yAxisRecieve < temp[4*8])
-                {
-                    //Console.WriteLine("4");
-                    binArray.Add('4');
-                }
-
-                if (xAxisRecieve > lineList[20].X1 && xAxisRecieve < lineList[20].X2 &&
-                    yAxisRecieve > temp[5 * 8] - 24 && yAxisRecieve < temp[5 * 8])
-                {
-                    //Console.WriteLine("5");
-                    binArray.Add('5');
-                }
-
-                if (xAxisRecieve > lineList[24].X1 && xAxisRecieve < lineList[24].X2 &&
-                   yAxisRecieve > temp[6 * 8] - 24 && yAxisRecieve < temp[6 * 8])
-                {
-                    //Console.WriteLine("6");
-                    binArray.Add('6');
-                }
-
-                if (xAxisRecieve > lineList[28].X1 && xAxisRecieve < lineList[28].X2 &&
-                   yAxisRecieve > temp[7 * 8] - 24 && yAxisRecieve < temp[7 * 8])
-                {
-                    //Console.WriteLine("7");
-                    binArray.Add('7');
-                }
-
-                if (xAxisRecieve > lineList[0].X1 && xAxisRecieve < lineList[0].X2 &&
-                   yAxisRecieve > temp[0 * 8] - 24 && yAxisRecieve < temp[0 * 8])
-                {
-                    //Console.WriteLine("8");
-                    binArray.Add('8');
-                }
-
-                if (xAxisRecieve > lineList2[4].X1 && xAxisRecieve < lineList2[4].X2 &&
-                    yAxisRecieve > temp1[1 * 8] - 24 && yAxisRecieve < temp1[1 * 8])
-                {
-                    //Console.WriteLine("9");
-                    binArray.Add('9');
-                }
-
-                if (xAxisRecieve > lineList2[8].X1 && xAxisRecieve < lineList2[8].X2 &&
-                    yAxisRecieve > temp1[2 * 8] - 24 && yAxisRecieve < temp1[2 * 8])
-                {
-                    //Console.WriteLine("a");
-                    binArray.Add('a');
-                }
-
-                if (xAxisRecieve > lineList2[12].X1 && xAxisRecieve < lineList2[12].X2 &&
-                    yAxisRecieve > temp1[3 * 8] - 24 && yAxisRecieve < temp1[3 * 8])
-                {
-                    //Console.WriteLine("b");
-                    binArray.Add('b');
-                }
-
-                if (xAxisRecieve > lineList2[16].X1 && xAxisRecieve < lineList2[16].X2 &&
-                   yAxisRecieve > temp1[4 * 8] - 24 && yAxisRecieve < temp1[4 * 8])
-                {
-                    //Console.WriteLine("c");
-                    binArray.Add('c');
-                }
-
-                if (xAxisRecieve > lineList2[20].X1 && xAxisRecieve < lineList2[20].X2 &&
-                    yAxisRecieve > temp1[5 * 8] - 24 && yAxisRecieve < temp1[5 * 8])
-                {
-                    //Console.WriteLine("d");
-                    binArray.Add('d');
-                }
-
-                if (xAxisRecieve > lineList2[24].X1 && xAxisRecieve < lineList2[24].X2 &&
-                   yAxisRecieve > temp1[6 * 8] - 24 && yAxisRecieve < temp1[6 * 8])
-                {
-                    //Console.WriteLine("e");
-                    binArray.Add('e');
-                }
-
-                if (xAxisRecieve > lineList2[28].X1 && xAxisRecieve < lineList2[28].X2 &&
-                   yAxisRecieve > temp1[7 * 8] - 24 && yAxisRecieve < temp1[7 * 8])
-                {
-                    //Console.WriteLine("f");
-                    binArray.Add('f');
-                }
-
             }
         }
+
 
         /// <summary>
         /// 
@@ -375,10 +420,10 @@ namespace demoSoftware
         /// <param name="angle"></param>
         public void drawboxes(double x1Axis, double y1Axis, double angle)
         {
-            x1Axis = x1Axis - 12;
-            y1Axis = y1Axis - 12;
+            x1Axis = x1Axis - 13;
+            y1Axis = y1Axis - 13;
 
-            int boxSize = 24;
+            int boxSize = 26;
             /* -----------------------------------------------Rotational Stuff------------------------------------------
             double radians = angle * (Math.PI / 180);
             double negSin = -Math.Sin(radians);
@@ -462,7 +507,7 @@ namespace demoSoftware
                 lineList[w + 3].StrokeThickness = 1;
                 myGrid.Children.Add(lineList[w + 3]);
             }
-            -----------------------------------------------------------------------------------------------------*/
+            //-----------------------------------------------------------------------------------------------------*/
             
             for (int w = 0; w < lineList.Length; w=w+4)
             {
@@ -563,7 +608,12 @@ namespace demoSoftware
 
         private void start_button_Click(object sender, RoutedEventArgs e)
         {
-            string result = transferStringBuilder("ThisisaverylongstringIamusingtotestthereadingfunctionalityout");
+
+            for (int i = 0; i < AllPoints.Count; i++)
+            {
+                Console.WriteLine(AllPoints[i].Position.X+", "+AllPoints[i].Position.Y);
+            }
+            string result = transferStringBuilder("~");
             string binary;
             char[] binArray;
             string transferString = result;
