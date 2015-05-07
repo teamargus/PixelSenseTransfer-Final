@@ -123,12 +123,6 @@
             <param name="transferString">string to transfer</param>
             <returns>string including null characters in between</returns>
         </member>
-        <member name="M:demoSoftware.MainWindow.blink(System.String)">
-            <summary>
-            This method actually blinks the binary flashes on table
-            </summary>
-            <param name="binary">binary String with null characters</param>
-        </member>
         <member name="M:demoSoftware.MainWindow.ConvertToBinary(System.Char)">
             <summary>
             This method converts character to binary string

@@ -29,7 +29,10 @@ namespace demoSoftware
     /// </summary>
     public partial class MainWindow : SurfaceWindow
     {
+        List<string> binaryList = new List<string>();
+        private DispatcherTimer TheTimer = new DispatcherTimer();
         Image[] imgArray = new Image[10];
+        Label[] labels = new Label[8];
         Rectangle[] rectArray = new Rectangle[10];
         double xAxisSend = 0;
         double yAxisSend = 0;
@@ -41,13 +44,13 @@ namespace demoSoftware
         double y1AxisRecieveUpdated = 0;
         double orientation = 0;
         double flashDist = (18 * 2.22) + 39;
+        String str = "";
         string temp2 = "";
         List<double> temp = new List<double>();
         List<double> temp1 = new List<double>();
         List<char> binArray = new List<char>();
         List<TouchPoint> AllPoints = new List<TouchPoint>();
-
-
+        int counter = 0;
         private Line[] lineList = new Line[32];
         private Line[] lineList2 = new Line[32];
         /// <summary>
@@ -62,16 +65,18 @@ namespace demoSoftware
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
 
-            imgArray[0] = img1;
-            imgArray[1] = img2;
-            imgArray[2] = img3;
-            imgArray[3] = img4;
-            imgArray[4] = img5;
-            imgArray[5] = img6;
-            imgArray[6] = img7;
-            imgArray[7] = img8;
-            imgArray[8] = img9;
-            imgArray[9] = img10;
+
+            labels[0] = lbl1;
+            labels[1] = lbl2;
+            labels[2] = lbl3;
+            labels[3] = lbl4;
+            labels[4] = lbl5;
+            labels[5] = lbl6;
+            labels[6] = lbl7;
+            labels[7] = lbl8;
+
+            
+
         }
 
 
@@ -149,6 +154,74 @@ namespace demoSoftware
         #endregion
 
         #region tagVisualization
+        private bool BlinkOn = false;
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lbl1.Background = Brushes.Black;
+            lbl2.Background = Brushes.Black;
+            lbl3.Background = Brushes.Black;
+            lbl4.Background = Brushes.Black;
+            lbl5.Background = Brushes.Black;
+            lbl6.Background = Brushes.Black;
+            lbl7.Background = Brushes.Black;
+            lbl8.Background = Brushes.Black;
+            if (counter < binaryList.Count)
+            {
+                str = binaryList[counter];
+
+                if (str[0] == '1')
+                {
+                    lbl1.Background = Brushes.White;
+                }
+                if (str[1] == '1')
+                {
+                    lbl2.Background = Brushes.White;
+                }
+                if (str[2] == '1')
+                {
+                    lbl3.Background = Brushes.White;
+                }
+                if (str[3] == '1')
+                {
+                    lbl4.Background = Brushes.White;
+                }
+                if (str[4] == '1')
+                {
+                    lbl5.Background = Brushes.White;
+                }
+                if (str[5] == '1')
+                {
+                    lbl6.Background = Brushes.White;
+                }
+                if (str[6] == '1')
+                {
+                    lbl7.Background = Brushes.White;
+                }
+                if (str[7] == '1')
+                {
+                    lbl8.Background = Brushes.White;
+                }
+
+            }
+            
+            if (counter >= binaryList.Count)
+            {
+                counter = 0;
+                lbl1.Background = Brushes.Black;
+                lbl2.Background = Brushes.Black;
+                lbl3.Background = Brushes.Black;
+                lbl4.Background = Brushes.Black;
+                lbl5.Background = Brushes.Black;
+                lbl6.Background = Brushes.Black;
+                lbl7.Background = Brushes.Black;
+                lbl8.Background = Brushes.Black;    
+                TheTimer.Stop();
+
+            }
+            counter++;
+            BlinkOn = !BlinkOn;
+            
+        }
         /// <summary>
         /// This function recognises tag, and gets relative x and y axis. It also gets orientation of the tag.
         /// </summary>
@@ -156,7 +229,10 @@ namespace demoSoftware
         /// <param name="e">TagVisualizerEvent Arguments</param>
         private void OnVisualizationAdded(object sender, TagVisualizerEventArgs e)
         {
-           textBox.Clear();
+            Canvas.SetLeft(sPanel, 0);
+            Canvas.SetTop(sPanel, 0);
+
+            textBox.Clear();
             LynxTagVisualization tag = (LynxTagVisualization)e.TagVisualization;
 
        //     Console.WriteLine(tag.VisualizedTag.Value);
@@ -175,11 +251,12 @@ namespace demoSoftware
             {
                 drawboxes(x1AxisRecieveUpdated, y1AxisRecieveUpdated + (i * (18 * 2.22)),orientation);
             }
+
         }
 
         private void OnVisualizationMoved(object sender, TagVisualizerEventArgs e)
         {
-
+            
             LynxTagVisualization tag = (LynxTagVisualization)e.TagVisualization;
             orientation = tag.Orientation;
             xAxisTag = tag.Center.X;
@@ -199,6 +276,8 @@ namespace demoSoftware
                     myGrid.Children.Remove(ucCurrentChild);
                 }
             }
+            Canvas.SetLeft(sPanel, 0);
+            Canvas.SetTop(sPanel, 0);
             temp.Clear();
             temp1.Clear();
             for (int i = 1; i < 9; i++)
@@ -227,8 +306,7 @@ namespace demoSoftware
             letterList.Add(AllPoints[0]);
             for (int i = 1; i < AllPoints.Count; i++)
             {
-              //  Console.WriteLine(AllPoints[i].TouchDevice.Id);
-              //  Console.WriteLine(AllPoints[i].Position.X + "   " + AllPoints[i].Position.Y);
+
                 if (AllPoints[i].Position.Y < AllPoints[i - 1].Position.Y)
                 {
                     transferredData=transferredData + constructBin(letterList);
@@ -272,79 +350,60 @@ namespace demoSoftware
                     if (xAxisRecieve > lineList[0].X1 && xAxisRecieve < lineList[0].X2 &&
                        yAxisRecieve > temp[0 * 8] - 24 && yAxisRecieve < (temp[0 * 8]))
                     {
-                        //Console.WriteLine("0");
-                        //binString[0] = "1";
                         bin[0] = "1";
                     }
 
                     if (xAxisRecieve > lineList[4].X1 && xAxisRecieve < lineList[4].X2 &&
                         yAxisRecieve > temp[1 * 8] - 24 && yAxisRecieve < temp[1 * 8])
                     {
-                        //Console.WriteLine("1");
-                        //binString[1] = "1";
                         bin[1] = "1";
                     }
 
                     if (xAxisRecieve > lineList[8].X1 && xAxisRecieve < lineList[8].X2 &&
                         yAxisRecieve > temp[2 * 8] - 24 && yAxisRecieve < temp[2 * 8])
                     {
-                        //Console.WriteLine("2");
-                        //binString[2] = "1";
                         bin[2] = "1";
                     }
 
                     if (xAxisRecieve > lineList[12].X1 && xAxisRecieve < lineList[12].X2 &&
                         yAxisRecieve > temp[3 * 8] - 24 && yAxisRecieve < temp[3 * 8])
                     {
-                        //Console.WriteLine("3");
-                        //binString[3] = "1";
                         bin[3] = "1";
                     }
 
                     if (xAxisRecieve > lineList[16].X1 && xAxisRecieve < lineList[16].X2 &&
                        yAxisRecieve > temp[4 * 8] - 24 && yAxisRecieve < temp[4 * 8])
                     {
-                        //Console.WriteLine("4");
-                        //binString[4] = "1";
                         bin[4] = "1";
                     }
 
                     if (xAxisRecieve > lineList[20].X1 && xAxisRecieve < lineList[20].X2 &&
                         yAxisRecieve > temp[5 * 8] - 24 && yAxisRecieve < temp[5 * 8])
                     {
-                        //Console.WriteLine("5");
-                        //binString[5] = "1";
                         bin[5] = "1";
                     }
 
                     if (xAxisRecieve > lineList[24].X1 && xAxisRecieve < lineList[24].X2 &&
                        yAxisRecieve > temp[6 * 8] - 24 && yAxisRecieve < temp[6 * 8])
                     {
-                        //Console.WriteLine("6");
-                        //binString[6] = "1";
                         bin[6] = "1";
                     }
 
                     if (xAxisRecieve > lineList[28].X1 && xAxisRecieve < lineList[28].X2 &&
                        yAxisRecieve > temp[7 * 8] - 24 && yAxisRecieve < temp[7 * 8])
                     {
-                        //Console.WriteLine("7");
-                        //binString[7] = "1";
                         bin[7] = "1";
                     }
 
                     if (xAxisRecieve > lineList2[0].X1 && xAxisRecieve < lineList2[0].X2 &&
                        yAxisRecieve > temp1[0 * 8] - 24 && yAxisRecieve < (temp1[0 * 8] + 10))
                     {
-                        //Console.WriteLine("8");
-                        //binString[8] = "1";
                         bin[0] = "1";
                     }
 
                     if (xAxisRecieve > lineList2[4].X1 && xAxisRecieve < lineList2[4].X2 &&
                         yAxisRecieve > temp1[1 * 8] - 24 && yAxisRecieve < temp1[1 * 8])
                     {
-                        //Console.WriteLine("9");
                         binArray.Add('9');
                     }
 
@@ -429,7 +488,6 @@ namespace demoSoftware
             foreach (TouchPoint _touchPoint in e.GetTouchPoints(this.myGrid))
             {
                 int id = _touchPoint.TouchDevice.Id;
-                //Console.WriteLine(_touchPoint.TouchDevice.GetIsTagRecognized());
                 if (!_touchPoint.TouchDevice.GetIsTagRecognized() && !_touchPoint.TouchDevice.GetIsFingerRecognized())
                 {
 
@@ -649,29 +707,32 @@ namespace demoSoftware
         
         private void start_button_Click(object sender, RoutedEventArgs e)
         {
+          
 
             for (int i = 0; i < AllPoints.Count; i++)
             {
                 Console.WriteLine(AllPoints[i].Position.X+", "+AllPoints[i].Position.Y);
             }
-            string result = transferStringBuilder("1");
+            string result = transferStringBuilder("ABC");
             string binary;
             char[] binArray;
             string transferString = result;
             binArray = transferString.ToCharArray();
             int location = 0;
             
-            while (true)
-            {
+          //  while (true)
+           // {
                 while (location < transferString.Length)
                 {
                     binary = ConvertToBinary(transferString[location]);
-                    blink(binary);
+                    binaryList.Add(binary);
                     location++;
                 }
-                location = 0;
-            }
-
+             //   location = 0;
+         //   }
+                TheTimer.Tick += timer_Tick;
+                TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+                TheTimer.Start();
         }
 
         /// <summary>
@@ -686,62 +747,14 @@ namespace demoSoftware
             {
                string temp = transferString[i].ToString();
 
-               BuildString = BuildString + (temp + '\0' + '\0' + '\0' ); //To keep whitle light stay, decrease no. of nulls.
+               BuildString = BuildString + (temp ); //To keep whitle light stay, decrease no. of nulls.
 
             }
             return BuildString;
         }
+   
 
-        /// <summary>
-        /// This method actually blinks the binary flashes on table
-        /// </summary>
-        /// <param name="binary">binary String with null characters</param>
-        private void blink(string binary)
-        {
-           // myGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
-           // myGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Auto) });
-            
-            Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
-            {
-                int binLength = binary.Length;
-             
-
-                
-                //no. miliseconds delay, last point
-                TimeSpan fadeInTime = new TimeSpan(0, 0, 0, 0, 60); //keep it similar to ThreadSleep--------Timing
-                TimeSpan fadeOutTime = new TimeSpan(0, 0, 0, 0, 60); //keep it similar to ThreadSleep-------Timing
-                var fadeInAnimation = new DoubleAnimation(0d, fadeInTime);
-                var fadeOutAnimation = new DoubleAnimation(1d, fadeOutTime);
-
-                fadeOutAnimation.Completed += (o, e) =>
-                {
-                    for (int i = 0; i < binLength; i++)
-                    {
-                   
-                        if (binary[i] == '1')
-                        {
-                            imgArray[i].Margin = new Thickness(xAxisSend, yAxisSend + (i * flashDist), 0, 0);
-                            imgArray[i].BeginAnimation(Image.OpacityProperty, fadeInAnimation);
-                        }
-                        
-                    }
-                    
-                };
-              
-                 //keep it similar to FadeIn and FadeOut -----------------------------------Timing
-                for (int i = 0; i < binLength; i++)
-                {
-                    if (binary[i] == '1')
-                    {
-                        imgArray[i].Margin = new Thickness(xAxisSend, yAxisSend + (i * flashDist), 0, 0);
-                        imgArray[i].BeginAnimation(Image.OpacityProperty, fadeOutAnimation);
-                    }
-                   
-                }
-                
-            }));
-            Thread.Sleep(30);
-        }
+  
 
         /// <summary>
         /// This method converts character to binary string
@@ -753,20 +766,11 @@ namespace demoSoftware
             string result = string.Empty;
 
             result += Convert.ToString((int)asciiString, 2);
-
-           return result;
+            string finalBin = "0" + result;
+            return finalBin;
             
         }
 
-        public static string BinaryToString(string hex)
-        {
-            // Convert the number expressed in base-16 to an integer. 
-            int value = Convert.ToInt32(hex, 16);
-            // Get the character corresponding to the integral value. 
-            string stringValue = Char.ConvertFromUtf32(value);
-            char charValue = (char)value;
-            return charValue.ToString();
-        }
 
         #endregion
 

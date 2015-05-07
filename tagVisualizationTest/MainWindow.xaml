@@ -13,8 +13,9 @@
         <!--  <Grid.Background>
             <ImageBrush ImageSource="background.png"/>
         </Grid.Background> -->
-      
-        <Image x:Name="img1" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
+
+  <!--      <Rectangle x:Name="rect1" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" /> -->
+        <!--    <Image x:Name="img1" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
             <Image x:Name="img2" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
             <Image x:Name="img3" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
             <Image x:Name="img4" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
@@ -24,7 +25,8 @@
             <Image x:Name="img8" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
             <Image x:Name="img9" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
             <Image x:Name="img10" Source="C:/flash.png" Opacity="0" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="24"/>
-        
+        -->
+       
         <s:TagVisualizer Name="myTag"             
             VisualizationAdded="OnVisualizationAdded"
             VisualizationRemoved="OnVisualizationRemoved"
@@ -57,7 +59,16 @@
 
         <Canvas
             Name="canvas">
-            
+            <StackPanel x:Name="sPanel" Height="338" Width="100" Margin="500">
+                <Label Name="lbl1" Width="24" Height="24"  HorizontalAlignment="Center" />
+                <Label Name="lbl2" Width="24" Height="24" HorizontalAlignment="Center" />
+                <Label Name="lbl3" Width="24" Height="24" HorizontalAlignment="Center" />
+                <Label Name="lbl4" Width="24" Height="24" HorizontalAlignment="Center" />
+                <Label Name="lbl5" Width="24" Height="24" HorizontalAlignment="Center" />
+                <Label Name="lbl6" Width="24" Height="24" HorizontalAlignment="Center" />
+                <Label Name="lbl7" Width="24" Height="24" HorizontalAlignment="Center" />
+                <Label Name="lbl8" Width="24" Height="24" HorizontalAlignment="Center" />
+            </StackPanel>
         </Canvas>
 
     </Grid>
