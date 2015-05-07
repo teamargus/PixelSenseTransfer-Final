@@ -94,6 +94,20 @@
             <param name="sender">object sender</param>
             <param name="e">TagVisualizerEvent Arguments</param>
         </member>
+        <member name="M:demoSoftware.MainWindow.constructBin(System.Collections.Generic.List{System.Windows.Input.TouchPoint})">
+            <summary>
+            
+            </summary>
+            <param name="tp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:demoSoftware.MainWindow.GetBytesFromBinaryString(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="binary"></param>
+            <returns></returns>
+        </member>
         <member name="M:demoSoftware.MainWindow.drawboxes(System.Double,System.Double,System.Double)">
             <summary>
             

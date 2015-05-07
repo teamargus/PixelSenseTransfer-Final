@@ -5,8 +5,11 @@
     Title="Demo Software"
     >
   <Grid Name="myGrid" MinHeight="1080" MinWidth="1920" 
-       TouchDown="onTouchDown"
-       Stylus.IsFlicksEnabled="False">
+         Stylus.IsFlicksEnabled="False"
+        >
+      
+     <!--  TouchDown="onTouchDown" -->
+      
         <!--  <Grid.Background>
             <ImageBrush ImageSource="background.png"/>
         </Grid.Background> -->
@@ -36,8 +39,8 @@
             </s:TagVisualizer.Definitions>
         </s:TagVisualizer>
 
-         
-            <Button Content="Start" Height="23" HorizontalAlignment="Left" Margin="1600,514,0,0" Name="button0" VerticalAlignment="Top" Width="75" Click="start_button_Click" />
+      
+        <Button Content="Start" Height="23" HorizontalAlignment="Left" Margin="1600,514,0,0" Name="button0" VerticalAlignment="Top" Width="75" Click="start_button_Click" />
       
       <TextBox
          Name="textBox"
@@ -52,7 +55,10 @@
         </TextBox>
         <Rectangle Width="5" Fill="white" Height="1080"/>
 
-
+        <Canvas
+            Name="canvas">
+            
+        </Canvas>
 
     </Grid>
 </s:SurfaceWindow>

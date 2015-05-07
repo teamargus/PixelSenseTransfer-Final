@@ -56,7 +56,9 @@ namespace demoSoftware
         public MainWindow()
         {
             InitializeComponent();
+            
             Touch.FrameReported += new TouchFrameEventHandler(Touch_FrameReported);
+            Grid.SetZIndex(canvas, -1);
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
 
@@ -220,22 +222,28 @@ namespace demoSoftware
             }
 
 
-            
-            string transferredString = "";
-
-            for (int i = 0; i < binArray.Count-1; i = i+2)
+            string transferredData = "";
+            List<TouchPoint> letterList = new List<TouchPoint>();
+            letterList.Add(AllPoints[0]);
+            for (int i = 1; i < AllPoints.Count; i++)
             {
-                //Console.WriteLine(binArray[i]);
-                string hexChar = (binArray[i].ToString() + binArray[i + 1].ToString());
-
-                Console.WriteLine(hexChar);
-                transferredString = transferredString + BinaryToString(hexChar);
-
-                textBox.Text = transferredString;
+              //  Console.WriteLine(AllPoints[i].TouchDevice.Id);
+              //  Console.WriteLine(AllPoints[i].Position.X + "   " + AllPoints[i].Position.Y);
+                if (AllPoints[i].Position.Y < AllPoints[i - 1].Position.Y)
+                {
+                    transferredData=transferredData + constructBin(letterList);
+                    letterList.Clear();
+                }
+                letterList.Add(AllPoints[i]);
                 
+               
             }
-            binArray.Clear();
-            transferredString="";
+            transferredData = transferredData + constructBin(letterList);
+            Console.WriteLine(transferredData);
+            textBox.Text = transferredData;
+            transferredData = "";
+            AllPoints.Clear();
+            letterList.Clear();
             temp.Clear();
             temp1.Clear();
 
@@ -244,37 +252,29 @@ namespace demoSoftware
         #endregion
 
         #region RecieveStuff
-
-        void onTouchDown(object sender, TouchEventArgs e)
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tp"></param>
+        /// <returns></returns>
+        public string constructBin(List<TouchPoint> tp)
         {
-            ///For each item in list
-            ///xAxisReceive=list[i].position.x
-            //yAxisTag = yAxisTag - 100;
+            String[] bin = { "0", "0", "0", "0", "0", "0", "0", "0" };
 
-            Point touchPosition = e.TouchDevice.GetPosition(this);
-            xAxisRecieve = touchPosition.X;
-            yAxisRecieve = touchPosition.Y;
-            string[] binString = new string[] { "0", "0", "0", "0", "0", "0", "0", "0" };
-            
-           
-            //Console.WriteLine("xAxis=" + xAxisRecieve);
-        //    Console.WriteLine("yAxis=" + yAxisRecieve);
-            //Console.WriteLine("lineList[0].X1: " + lineList[0].X1 + "   lineList[0].X2:  " + lineList[0].X2);
-         //   Console.WriteLine("temp[0]-24: " + (temp[0]-24) + "   temp[0]:  " + temp[0]);
-            //for (int i=0 ; i < AllPointsList.Count; i++)
-            //{
-                //xAxisRecieve = AllPointsList[i].Position.X;
-                //yAxisRecieve = AllPointsList[i].Position.Y;
+            for (int i = 0; i < tp.Count; i++)
+            {
+                xAxisRecieve = tp[i].Position.X;
+                yAxisRecieve = tp[i].Position.Y;
                 if (xAxisRecieve > xAxisTag && xAxisRecieve < (xAxisTag + 200) &&
                 yAxisRecieve > yAxisTag && yAxisRecieve < (yAxisTag + 1000))
-
                 {
                     if (xAxisRecieve > lineList[0].X1 && xAxisRecieve < lineList[0].X2 &&
                        yAxisRecieve > temp[0 * 8] - 24 && yAxisRecieve < (temp[0 * 8]))
                     {
                         //Console.WriteLine("0");
                         //binString[0] = "1";
-                        binArray.Add('0');
+                        bin[0] = "1";
                     }
 
                     if (xAxisRecieve > lineList[4].X1 && xAxisRecieve < lineList[4].X2 &&
@@ -282,7 +282,7 @@ namespace demoSoftware
                     {
                         //Console.WriteLine("1");
                         //binString[1] = "1";
-                        binArray.Add('1');
+                        bin[1] = "1";
                     }
 
                     if (xAxisRecieve > lineList[8].X1 && xAxisRecieve < lineList[8].X2 &&
@@ -290,7 +290,7 @@ namespace demoSoftware
                     {
                         //Console.WriteLine("2");
                         //binString[2] = "1";
-                        binArray.Add('2');
+                        bin[2] = "1";
                     }
 
                     if (xAxisRecieve > lineList[12].X1 && xAxisRecieve < lineList[12].X2 &&
@@ -298,7 +298,7 @@ namespace demoSoftware
                     {
                         //Console.WriteLine("3");
                         //binString[3] = "1";
-                        binArray.Add('3');
+                        bin[3] = "1";
                     }
 
                     if (xAxisRecieve > lineList[16].X1 && xAxisRecieve < lineList[16].X2 &&
@@ -306,7 +306,7 @@ namespace demoSoftware
                     {
                         //Console.WriteLine("4");
                         //binString[4] = "1";
-                        binArray.Add('4');
+                        bin[4] = "1";
                     }
 
                     if (xAxisRecieve > lineList[20].X1 && xAxisRecieve < lineList[20].X2 &&
@@ -314,7 +314,7 @@ namespace demoSoftware
                     {
                         //Console.WriteLine("5");
                         //binString[5] = "1";
-                        binArray.Add('5');
+                        bin[5] = "1";
                     }
 
                     if (xAxisRecieve > lineList[24].X1 && xAxisRecieve < lineList[24].X2 &&
@@ -322,7 +322,7 @@ namespace demoSoftware
                     {
                         //Console.WriteLine("6");
                         //binString[6] = "1";
-                        binArray.Add('6');
+                        bin[6] = "1";
                     }
 
                     if (xAxisRecieve > lineList[28].X1 && xAxisRecieve < lineList[28].X2 &&
@@ -330,7 +330,7 @@ namespace demoSoftware
                     {
                         //Console.WriteLine("7");
                         //binString[7] = "1";
-                        binArray.Add('7');
+                        bin[7] = "1";
                     }
 
                     if (xAxisRecieve > lineList2[0].X1 && xAxisRecieve < lineList2[0].X2 &&
@@ -338,7 +338,7 @@ namespace demoSoftware
                     {
                         //Console.WriteLine("8");
                         //binString[8] = "1";
-                        binArray.Add('8');
+                        bin[0] = "1";
                     }
 
                     if (xAxisRecieve > lineList2[4].X1 && xAxisRecieve < lineList2[4].X2 &&
@@ -391,21 +391,62 @@ namespace demoSoftware
                     }
 
                 }
-            //}
-            
-            //Console.WriteLine("binaryString: " + binString);
-            
+            }
+            string letter = "";
+            for (int q = 0; q < bin.Length; q++)
+            {
+                letter = letter + bin[q];
+            }
+            var data = GetBytesFromBinaryString(letter);
+            var text = Encoding.ASCII.GetString(data);
+            return text;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="binary"></param>
+        /// <returns></returns>
+        public Byte[] GetBytesFromBinaryString(String binary)
+        {
+            var list = new List<Byte>();
+
+            for (int i = 0; i < binary.Length; i += 8)
+            {
+                String t = binary.Substring(i, 8);
+
+                list.Add(Convert.ToByte(t, 2));
+            }
+
+            return list.ToArray();
+        }
+
+
+       
 
         void Touch_FrameReported(object sender, TouchFrameEventArgs e)
         {
             foreach (TouchPoint _touchPoint in e.GetTouchPoints(this.myGrid))
             {
+                int id = _touchPoint.TouchDevice.Id;
                 //Console.WriteLine(_touchPoint.TouchDevice.GetIsTagRecognized());
                 if (!_touchPoint.TouchDevice.GetIsTagRecognized() && !_touchPoint.TouchDevice.GetIsFingerRecognized())
                 {
-                    
-                    AllPoints.Add(_touchPoint);
+
+                    bool flag = false;
+                    for (int i = 0; i < AllPoints.Count; i++)
+                    {
+                        if (AllPoints[i].TouchDevice.Id == id)
+                        {
+                            flag = true;
+                        }
+                    }
+
+                    if (!flag)
+                    {
+                        AllPoints.Add(_touchPoint);
+                        flag = false;
+                    }
 
                 }
             }
@@ -605,7 +646,7 @@ namespace demoSoftware
         #endregion
 
         #region SendStuff
-
+        
         private void start_button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -613,7 +654,7 @@ namespace demoSoftware
             {
                 Console.WriteLine(AllPoints[i].Position.X+", "+AllPoints[i].Position.Y);
             }
-            string result = transferStringBuilder("~");
+            string result = transferStringBuilder("1");
             string binary;
             char[] binArray;
             string transferString = result;
@@ -657,12 +698,18 @@ namespace demoSoftware
         /// <param name="binary">binary String with null characters</param>
         private void blink(string binary)
         {
+           // myGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+           // myGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Auto) });
+            
             Dispatcher.Invoke(DispatcherPriority.Input, new ThreadStart(() =>
             {
                 int binLength = binary.Length;
+             
+
+                
                 //no. miliseconds delay, last point
-                TimeSpan fadeInTime = new TimeSpan(0, 0, 0, 0, 50); //keep it similar to ThreadSleep--------Timing
-                TimeSpan fadeOutTime = new TimeSpan(0, 0, 0, 0, 50); //keep it similar to ThreadSleep-------Timing
+                TimeSpan fadeInTime = new TimeSpan(0, 0, 0, 0, 60); //keep it similar to ThreadSleep--------Timing
+                TimeSpan fadeOutTime = new TimeSpan(0, 0, 0, 0, 60); //keep it similar to ThreadSleep-------Timing
                 var fadeInAnimation = new DoubleAnimation(0d, fadeInTime);
                 var fadeOutAnimation = new DoubleAnimation(1d, fadeOutTime);
 
@@ -676,9 +723,12 @@ namespace demoSoftware
                             imgArray[i].Margin = new Thickness(xAxisSend, yAxisSend + (i * flashDist), 0, 0);
                             imgArray[i].BeginAnimation(Image.OpacityProperty, fadeInAnimation);
                         }
+                        
                     }
+                    
                 };
-                Thread.Sleep(50); //keep it similar to FadeIn and FadeOut -----------------------------------Timing
+              
+                 //keep it similar to FadeIn and FadeOut -----------------------------------Timing
                 for (int i = 0; i < binLength; i++)
                 {
                     if (binary[i] == '1')
@@ -686,8 +736,11 @@ namespace demoSoftware
                         imgArray[i].Margin = new Thickness(xAxisSend, yAxisSend + (i * flashDist), 0, 0);
                         imgArray[i].BeginAnimation(Image.OpacityProperty, fadeOutAnimation);
                     }
+                   
                 }
+                
             }));
+            Thread.Sleep(30);
         }
 
         /// <summary>
