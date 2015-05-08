@@ -48,8 +48,8 @@ namespace demoSoftware
             // Create the main window, but on the UI thread.
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, (Invoker)delegate
             {
-                MainWindow = new MainWindow();
-                MainWindow.Show();
+                MainWindow window = new MainWindow();
+                window.Show();
             });
         }
     }

@@ -19,6 +19,9 @@ namespace demoSoftware
     /// </summary>
     public partial class Splash : Window
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public Splash()
         {
             InitializeComponent();

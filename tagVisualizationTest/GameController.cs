@@ -47,7 +47,7 @@ namespace demoSoftware
         private void setDeck(Deck val) { this.deck = val; }
 
         /// <summary>
-        /// 
+        /// method that runs the blackjack game
         /// </summary>
         private void play()
         {

@@ -35,6 +35,7 @@ namespace demoSoftware
         Label[] labels = new Label[8];
         Rectangle LynxRect = new Rectangle();
 
+        bool welcomeFlag = false;
         double xAxisSend = 0;
         double yAxisSend = 0;
         double xAxisRecieve = 0;
@@ -56,15 +57,15 @@ namespace demoSoftware
         /// <summary>
         /// Default constructor.
         /// </summary>
+
         public MainWindow()
         {
             InitializeComponent();
-            
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
             Touch.FrameReported += new TouchFrameEventHandler(Touch_FrameReported);
             Grid.SetZIndex(canvas, -1);
             // Add handlers for window availability events
             AddWindowAvailabilityHandlers();
-
 
             labels[0] = lbl1;
             labels[1] = lbl2;
@@ -75,11 +76,16 @@ namespace demoSoftware
             labels[6] = lbl7;
             labels[7] = lbl8;
             TheTimer.Tick += timer_Tick;
-            TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            canvas.Background = new ImageBrush() { ImageSource = new BitmapImage((new Uri(@"C:\background.jpg", UriKind.Absolute))) };
-
+            TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+            canvas.Background = new ImageBrush() { ImageSource = new BitmapImage((new Uri(@"C:\welcomeScreen.jpg", UriKind.Absolute))) };
+          
         }
 
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
+        }
 
         #region WPFmethods
 
@@ -159,11 +165,17 @@ namespace demoSoftware
         /// <param name="e">TagVisualizerEvent Arguments</param>
         private void OnVisualizationAdded(object sender, TagVisualizerEventArgs e)
         {
-            
+
+            welcomeFlag = true;
+            if (welcomeFlag)
+            {
+                canvas.Background = new ImageBrush() { ImageSource = new BitmapImage((new Uri(@"C:\background.jpg", UriKind.Absolute))) };
+                myGrid.Children.Remove(loadingImg);
+            }
             textBox.Clear();
+
             LynxTagVisualization tag = (LynxTagVisualization)e.TagVisualization;
 
-       //     Console.WriteLine(tag.VisualizedTag.Value);
             orientation = tag.Orientation;
             xAxisTag = tag.Center.X;
             yAxisTag = tag.Center.Y;
@@ -182,7 +194,6 @@ namespace demoSoftware
             Canvas.SetLeft(LynxRect, xAxisTag - 120);
             Canvas.SetTop(LynxRect, yAxisTag - 70);
             canvas.Children.Add(LynxRect);
-        //    Console.WriteLine(orientation);
 
             for (int i = 1; i < 9; i++)
             {
@@ -192,6 +203,7 @@ namespace demoSoftware
 
         private void OnVisualizationMoved(object sender, TagVisualizerEventArgs e)
         {
+            
             
             LynxTagVisualization tag = (LynxTagVisualization)e.TagVisualization;
             orientation = tag.Orientation;
@@ -423,9 +435,6 @@ namespace demoSoftware
             return list.ToArray();
         }
 
-
-       
-
         void Touch_FrameReported(object sender, TouchFrameEventArgs e)
         {
             foreach (TouchPoint _touchPoint in e.GetTouchPoints(this.myGrid))
@@ -650,13 +659,12 @@ namespace demoSoftware
         
         private void start_button_Click(object sender, RoutedEventArgs e)
         {
-
             counter = 0;
             for (int i = 0; i < AllPoints.Count; i++)
             {
                 Console.WriteLine(AllPoints[i].Position.X+", "+AllPoints[i].Position.Y);
             }
-            string result = transferStringBuilder("ABCDEFGHIJKLMNOP");
+            string result = transferStringBuilder("~");
             string binary;
             char[] binArray;
             string transferString = result;

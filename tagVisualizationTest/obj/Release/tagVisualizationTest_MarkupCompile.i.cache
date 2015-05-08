@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Release\
 demoSoftware
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\App.xaml
 3-477872532
 2-1425550699
-11-1536442100
+13-850328579
 17770513688
 MainWindow.xaml;Splash.xaml;TagVisualization.xaml;
 
