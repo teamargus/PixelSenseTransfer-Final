@@ -8,7 +8,7 @@ namespace demoSoftware
     /// <summary>
     /// 
     /// </summary>
-    class Player
+   class Player
     {
         private int wallet;
         private String id;
@@ -25,56 +25,65 @@ namespace demoSoftware
             setWallet(wallet);
             setID(id);
             setScore(0);
-
+            setHand( new List<Card>() );
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="val"></param>
-        public void setWallet(int val) { this.wallet = val; }
+        public void setWallet(int val) { wallet = val; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="val"></param>
-        public void setID(String val) { this.id = val; }
+        public void setID(String val) { id = val; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="val"></param>
-        public void setScore(int val) { this.score = val; }
+        public void setScore(int val) { score = val; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="val"></param>
-        public void setHand(List<Card> val) { this.hand = val; }
+        public void setHand(List<Card> val) { hand = val; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public int getWallet() { return this.wallet; }
+        public int getWallet() { return wallet; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public String getID() { return this.id; }
+        public String getID() { return id; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public int getScore() { return this.score; }
+        public int getScore() { return score; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<Card> getHand() { return this.hand; }
+        public List<Card> getHand() { return hand; }
+
+        public void calculateScore() {
+            int result = 0;
+
+            for (int i = 0; i < this.hand.Count; i++) {
+                result += this.hand[i].getValue();
+            }
+            setScore(result);
+        }
 
         /// <summary>
         /// 
@@ -83,12 +92,12 @@ namespace demoSoftware
         private String handString()
         {
             String result = "";
-
-            for (int i = 0; i < this.hand.Count; i++)
+            
+            for (int i = 0; i < getHand().Count; i++)
             {
                 result += hand[i].toString() + ", ";
             }
-
+            
             return result;
         }
 
@@ -98,10 +107,10 @@ namespace demoSoftware
         /// <returns></returns>
         public String toString()
         {
-            return this.id + ":" +
-                            "\n\tWallet: " + this.wallet +
+            return id + ":" +
+                            "\n\tWallet: " + wallet +
                             "\n\tHand: " + handString() +
-                            "\n\tCurrent Score: " + this.score;
+                            "\n\tCurrent Score: " + score;
         }
     }
 }
