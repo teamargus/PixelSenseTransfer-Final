@@ -33,7 +33,8 @@ namespace demoSoftware
         private DispatcherTimer TheTimer = new DispatcherTimer();
         Image[] imgArray = new Image[10];
         Label[] labels = new Label[8];
-        Rectangle[] rectArray = new Rectangle[10];
+        Rectangle LynxRect = new Rectangle();
+
         double xAxisSend = 0;
         double yAxisSend = 0;
         double xAxisRecieve = 0;
@@ -45,7 +46,6 @@ namespace demoSoftware
         double orientation = 0;
         double flashDist = (18 * 2.22) + 39;
         String str = "";
-        string temp2 = "";
         List<double> temp = new List<double>();
         List<double> temp1 = new List<double>();
         List<char> binArray = new List<char>();
@@ -74,8 +74,9 @@ namespace demoSoftware
             labels[5] = lbl6;
             labels[6] = lbl7;
             labels[7] = lbl8;
-
-            
+            TheTimer.Tick += timer_Tick;
+            TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            canvas.Background = new ImageBrush() { ImageSource = new BitmapImage((new Uri(@"C:\background.jpg", UriKind.Absolute))) };
 
         }
 
@@ -148,80 +149,9 @@ namespace demoSoftware
             //TODO: disable audio, animations here
         }
         #endregion
-        #region SurfaceInput
-
-
-        #endregion
 
         #region tagVisualization
-        private bool BlinkOn = false;
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            lbl1.Background = Brushes.Black;
-            lbl2.Background = Brushes.Black;
-            lbl3.Background = Brushes.Black;
-            lbl4.Background = Brushes.Black;
-            lbl5.Background = Brushes.Black;
-            lbl6.Background = Brushes.Black;
-            lbl7.Background = Brushes.Black;
-            lbl8.Background = Brushes.Black;
-            if (counter < binaryList.Count)
-            {
-                str = binaryList[counter];
-
-                if (str[0] == '1')
-                {
-                    lbl1.Background = Brushes.White;
-                }
-                if (str[1] == '1')
-                {
-                    lbl2.Background = Brushes.White;
-                }
-                if (str[2] == '1')
-                {
-                    lbl3.Background = Brushes.White;
-                }
-                if (str[3] == '1')
-                {
-                    lbl4.Background = Brushes.White;
-                }
-                if (str[4] == '1')
-                {
-                    lbl5.Background = Brushes.White;
-                }
-                if (str[5] == '1')
-                {
-                    lbl6.Background = Brushes.White;
-                }
-                if (str[6] == '1')
-                {
-                    lbl7.Background = Brushes.White;
-                }
-                if (str[7] == '1')
-                {
-                    lbl8.Background = Brushes.White;
-                }
-
-            }
-            
-            if (counter >= binaryList.Count)
-            {
-                counter = 0;
-                lbl1.Background = Brushes.Black;
-                lbl2.Background = Brushes.Black;
-                lbl3.Background = Brushes.Black;
-                lbl4.Background = Brushes.Black;
-                lbl5.Background = Brushes.Black;
-                lbl6.Background = Brushes.Black;
-                lbl7.Background = Brushes.Black;
-                lbl8.Background = Brushes.Black;    
-                TheTimer.Stop();
-
-            }
-            counter++;
-            BlinkOn = !BlinkOn;
-            
-        }
+        
         /// <summary>
         /// This function recognises tag, and gets relative x and y axis. It also gets orientation of the tag.
         /// </summary>
@@ -229,9 +159,7 @@ namespace demoSoftware
         /// <param name="e">TagVisualizerEvent Arguments</param>
         private void OnVisualizationAdded(object sender, TagVisualizerEventArgs e)
         {
-            Canvas.SetLeft(sPanel, 0);
-            Canvas.SetTop(sPanel, 0);
-
+            
             textBox.Clear();
             LynxTagVisualization tag = (LynxTagVisualization)e.TagVisualization;
 
@@ -239,12 +167,21 @@ namespace demoSoftware
             orientation = tag.Orientation;
             xAxisTag = tag.Center.X;
             yAxisTag = tag.Center.Y;
-            xAxisSend = (tag.Center.X - 960) * 2;
-            yAxisSend = (tag.Center.Y - 540) * 2;
-            xAxisSend = xAxisSend - (flashDist - 20);
-            yAxisSend = yAxisSend + (2.75 * 45 * 2.22);
+            xAxisSend = xAxisTag - (flashDist + 10);
+            yAxisSend = yAxisTag + ((40 * 2.22));
             x1AxisRecieveUpdated = xAxisTag + (flashDist - 40);
             y1AxisRecieveUpdated = yAxisTag + ((26 * 2.22));
+
+            Canvas.SetLeft(sPanel, xAxisSend);
+            Canvas.SetTop(sPanel, yAxisSend);
+            LynxRect.Height = 465;
+            LynxRect.Width =240;
+
+            LynxRect.Fill = Brushes.Black;
+            Canvas.SetZIndex(LynxRect, -1);
+            Canvas.SetLeft(LynxRect, xAxisTag - 120);
+            Canvas.SetTop(LynxRect, yAxisTag - 70);
+            canvas.Children.Add(LynxRect);
         //    Console.WriteLine(orientation);
 
             for (int i = 1; i < 9; i++)
@@ -261,12 +198,15 @@ namespace demoSoftware
             orientation = tag.Orientation;
             xAxisTag = tag.Center.X;
             yAxisTag = tag.Center.Y;
-            xAxisSend = (tag.Center.X - 960) * 2;
-            yAxisSend = (tag.Center.Y - 540) * 2;
-            xAxisSend = xAxisSend - (flashDist - 20);
-            yAxisSend = yAxisSend + (2.75 * 45 * 2.22);
+            xAxisSend = xAxisTag - (flashDist + 10);
+            yAxisSend = yAxisTag + ((40 * 2.22));
             x1AxisRecieveUpdated = xAxisTag + (flashDist - 40);
             y1AxisRecieveUpdated = yAxisTag + ((26 * 2.22));
+
+            LynxRect.Fill = Brushes.Black;
+            Canvas.SetLeft(LynxRect, xAxisTag - 120);
+            Canvas.SetTop(LynxRect, yAxisTag - 70);
+
             int intTotalChildren = myGrid.Children.Count - 1;
             for (int intCounter = intTotalChildren; intCounter >= 0; intCounter--)
             {
@@ -276,8 +216,8 @@ namespace demoSoftware
                     myGrid.Children.Remove(ucCurrentChild);
                 }
             }
-            Canvas.SetLeft(sPanel, 0);
-            Canvas.SetTop(sPanel, 0);
+            Canvas.SetLeft(sPanel,xAxisSend);
+            Canvas.SetTop(sPanel, yAxisSend);
             temp.Clear();
             temp1.Clear();
             for (int i = 1; i < 9; i++)
@@ -290,6 +230,7 @@ namespace demoSoftware
 
         private void OnVisualizationRemoved(object sender, TagVisualizerEventArgs e)
         {
+            canvas.Children.Remove(LynxRect);
             int intTotalChildren = myGrid.Children.Count - 1;
             for (int intCounter = intTotalChildren; intCounter >= 0; intCounter--)
             {
@@ -302,28 +243,31 @@ namespace demoSoftware
 
 
             string transferredData = "";
-            List<TouchPoint> letterList = new List<TouchPoint>();
-            letterList.Add(AllPoints[0]);
-            for (int i = 1; i < AllPoints.Count; i++)
+            if (AllPoints.Count > 0)
             {
-
-                if (AllPoints[i].Position.Y < AllPoints[i - 1].Position.Y)
+                List<TouchPoint> letterList = new List<TouchPoint>();
+                letterList.Add(AllPoints[0]);
+                for (int i = 1; i < AllPoints.Count; i++)
                 {
-                    transferredData=transferredData + constructBin(letterList);
-                    letterList.Clear();
+
+                    if (AllPoints[i].Position.Y < AllPoints[i - 1].Position.Y)
+                    {
+                        transferredData = transferredData + constructBin(letterList);
+                        letterList.Clear();
+                    }
+                    letterList.Add(AllPoints[i]);
+
+
                 }
-                letterList.Add(AllPoints[i]);
-                
-               
+                transferredData = transferredData + constructBin(letterList);
+                Console.WriteLine(transferredData);
+                textBox.Text = transferredData;
+                transferredData = "";
+                AllPoints.Clear();
+                letterList.Clear();
+                temp.Clear();
+                temp1.Clear();
             }
-            transferredData = transferredData + constructBin(letterList);
-            Console.WriteLine(transferredData);
-            textBox.Text = transferredData;
-            transferredData = "";
-            AllPoints.Clear();
-            letterList.Clear();
-            temp.Clear();
-            temp1.Clear();
 
         }
 
@@ -512,11 +456,11 @@ namespace demoSoftware
 
 
         /// <summary>
-        /// 
+        /// draws boxes for recieving bits
         /// </summary>
-        /// <param name="x1Axis"></param>
-        /// <param name="y1Axis"></param>
-        /// <param name="angle"></param>
+        /// <param name="x1Axis">start of box X Axis</param>
+        /// <param name="y1Axis">start of box Y Axis</param>
+        /// <param name="angle">Orientation Angle</param>
         public void drawboxes(double x1Axis, double y1Axis, double angle)
         {
             x1Axis = x1Axis - 13;
@@ -707,32 +651,100 @@ namespace demoSoftware
         
         private void start_button_Click(object sender, RoutedEventArgs e)
         {
-          
 
+            counter = 0;
             for (int i = 0; i < AllPoints.Count; i++)
             {
                 Console.WriteLine(AllPoints[i].Position.X+", "+AllPoints[i].Position.Y);
             }
-            string result = transferStringBuilder("ABC");
+            string result = transferStringBuilder("ABCDEFGHIJKLMNOP");
             string binary;
             char[] binArray;
             string transferString = result;
             binArray = transferString.ToCharArray();
             int location = 0;
             
-          //  while (true)
-           // {
                 while (location < transferString.Length)
                 {
                     binary = ConvertToBinary(transferString[location]);
                     binaryList.Add(binary);
                     location++;
                 }
-             //   location = 0;
-         //   }
-                TheTimer.Tick += timer_Tick;
-                TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+                
                 TheTimer.Start();
+        }
+
+        /// <summary>
+        /// Flashes binary bits
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">event arguements</param>
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lbl1.Background = Brushes.Black;
+            lbl2.Background = Brushes.Black;
+            lbl3.Background = Brushes.Black;
+            lbl4.Background = Brushes.Black;
+            lbl5.Background = Brushes.Black;
+            lbl6.Background = Brushes.Black;
+            lbl7.Background = Brushes.Black;
+            lbl8.Background = Brushes.Black;
+            if (counter < binaryList.Count)
+            {
+                str = binaryList[counter];
+
+                if (str[0] == '1')
+                {
+                    lbl1.Background = Brushes.White;
+                }
+                if (str[1] == '1')
+                {
+                    lbl2.Background = Brushes.White;
+                }
+                if (str[2] == '1')
+                {
+                    lbl3.Background = Brushes.White;
+                }
+                if (str[3] == '1')
+                {
+                    lbl4.Background = Brushes.White;
+                }
+                if (str[4] == '1')
+                {
+                    lbl5.Background = Brushes.White;
+                }
+                if (str[5] == '1')
+                {
+                    lbl6.Background = Brushes.White;
+                }
+                if (str[6] == '1')
+                {
+                    lbl7.Background = Brushes.White;
+                }
+                if (str[7] == '1')
+                {
+                    lbl8.Background = Brushes.White;
+                }
+
+            }
+
+            if (counter >= binaryList.Count)
+            {
+                counter = 0;
+                binaryList.Clear();
+                lbl1.Background = Brushes.Black;
+                lbl2.Background = Brushes.Black;
+                lbl3.Background = Brushes.Black;
+                lbl4.Background = Brushes.Black;
+                lbl5.Background = Brushes.Black;
+                lbl6.Background = Brushes.Black;
+                lbl7.Background = Brushes.Black;
+                lbl8.Background = Brushes.Black;
+                TheTimer.Stop();
+
+            }
+            counter++;
+
         }
 
         /// <summary>
@@ -753,9 +765,6 @@ namespace demoSoftware
             return BuildString;
         }
    
-
-  
-
         /// <summary>
         /// This method converts character to binary string
         /// </summary>

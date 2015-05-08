@@ -110,11 +110,18 @@
         </member>
         <member name="M:demoSoftware.MainWindow.drawboxes(System.Double,System.Double,System.Double)">
             <summary>
-            
+            draws boxes for recieving bits
             </summary>
-            <param name="x1Axis"></param>
-            <param name="y1Axis"></param>
-            <param name="angle"></param>
+            <param name="x1Axis">start of box X Axis</param>
+            <param name="y1Axis">start of box Y Axis</param>
+            <param name="angle">Orientation Angle</param>
+        </member>
+        <member name="M:demoSoftware.MainWindow.timer_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Flashes binary bits
+            </summary>
+            <param name="sender">sender</param>
+            <param name="e">event arguements</param>
         </member>
         <member name="M:demoSoftware.MainWindow.transferStringBuilder(System.String)">
             <summary>
