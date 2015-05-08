@@ -188,7 +188,6 @@ namespace demoSoftware
             {
                 drawboxes(x1AxisRecieveUpdated, y1AxisRecieveUpdated + (i * (18 * 2.22)),orientation);
             }
-
         }
 
         private void OnVisualizationMoved(object sender, TagVisualizerEventArgs e)

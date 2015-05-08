@@ -388,5 +388,31 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:demoSoftware.Splash">
+            <summary>
+            Interaction logic for Splash.xaml
+            </summary>
+            <summary>
+            Splash
+            </summary>
+        </member>
+        <member name="M:demoSoftware.Splash.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:demoSoftware.WelcomeScreen">
+            <summary>
+            Interaction logic for WelcomeScreen.xaml
+            </summary>
+            <summary>
+            WelcomeScreen
+            </summary>
+        </member>
+        <member name="M:demoSoftware.WelcomeScreen.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
     </members>
 </doc>

@@ -34,4 +34,7 @@ C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\de
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\DemoSoftware.csproj.GenerateResource.Cache
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\tagVisualizationTest.exe
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\tagVisualizationTest.pdb
-C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\DemoSoftware.csprojResolveAssemblyReference.cache
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\Splash.baml
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\Splash.g.cs
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\WelcomeScreen.baml
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\WelcomeScreen.g.cs

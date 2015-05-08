@@ -1,0 +1,19 @@
+﻿<Window x:Class="demoSoftware.Splash"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SplashScreen" Height="236" Width="414" WindowStartupLocation="CenterScreen" WindowStyle="None" 
+        Background="Orange" BorderBrush="DarkOrange" BorderThickness="3" ShowInTaskbar="False" ResizeMode="NoResize">
+    <Grid>
+        <Label Margin="19,12,17,0" Name="label1" FontSize="48" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="MintCream" Height="72">
+            <Label.BitmapEffect>
+                <OuterGlowBitmapEffect GlowSize="15" />
+            </Label.BitmapEffect> BlackJack
+        </Label>
+        <Label Margin="150,78,17,0" Name="label2" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="MintCream" Height="42">
+            <Label.BitmapEffect>
+                <OuterGlowBitmapEffect GlowSize="15" />
+            </Label.BitmapEffect> By Team Argus
+        </Label>
+        <ProgressBar Name="progBar" Margin="22,130,16,36" Minimum="0" Maximum="5"/>
+    </Grid>
+</Window>
