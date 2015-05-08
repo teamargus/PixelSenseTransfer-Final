@@ -23,13 +23,13 @@ namespace demoSoftware
         /// <summary>
         /// 
         /// </summary>
-        public void setDeck() { this.deckOfCards = getShuffledDeck(); }
+        public void setDeck() { deckOfCards = getShuffledDeck(); }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<Card> getDeck() { return this.deckOfCards; }
+        public List<Card> getDeck() { return deckOfCards; }
 
         /// <summary>
         /// 
@@ -38,16 +38,18 @@ namespace demoSoftware
         private List<Card> getShuffledDeck()
         {
             List<Card> cards = new List<Card>(52);
+            string heart = "HEART", club = "CLUB", spade = "SPADE", diamond = "DIAMOND";
             //add 2-10 cards of each suit
             for (int i = 2; i <= 10; i++)
             {
-                Card c = new Card(i, i.ToString(), "HEARTS");
+                
+                Card c = new Card(i, i.ToString(), heart);
                 cards.Add(c);
-                c = new Card(i, i.ToString(), "DIAMONDS");
+                c = new Card(i, i.ToString(), club);
                 cards.Add(c);
-                c = new Card(i, i.ToString(), "CLUBS");
+                c = new Card(i, i.ToString(), spade);
                 cards.Add(c);
-                c = new Card(i, i.ToString(), "SPADES");
+                c = new Card(i, i.ToString(), diamond);
                 cards.Add(c);
             }
             //add face cards
@@ -56,43 +58,43 @@ namespace demoSoftware
                 switch (i)
                 {
                     case 0: //JACK
-                        Card c = new Card(i, "JACK", "HEARTS");
+                        Card c = new Card(10, "J", heart);
                         cards.Add(c);
-                        c = new Card(10, "JACK", "DIAMONDS");
+                        c = new Card(10, "J", diamond);
                         cards.Add(c);
-                        c = new Card(10, "JACK", "CLUBS");
+                        c = new Card(10, "J", club);
                         cards.Add(c);
-                        c = new Card(10, "JACK", "SPADES");
+                        c = new Card(10, "J", spade);
                         cards.Add(c);
                         break;
                     case 1: //QUEEN
-                        c = new Card(10, "QUEEN", "HEARTS");
+                        c = new Card(10, "Q", heart);
                         cards.Add(c);
-                        c = new Card(10, "QUEEN", "DIAMONDS");
+                        c = new Card(10, "Q", diamond);
                         cards.Add(c);
-                        c = new Card(10, "QUEEN", "CLUBS");
+                        c = new Card(10, "Q", club);
                         cards.Add(c);
-                        c = new Card(10, "QUEEN", "SPADES");
+                        c = new Card(10, "Q", spade);
                         cards.Add(c);
                         break;
                     case 2: //KING
-                        c = new Card(10, "KING", "HEARTS");
+                        c = new Card(10, "K", heart);
                         cards.Add(c);
-                        c = new Card(10, "KING", "DIAMONDS");
+                        c = new Card(10, "K", diamond);
                         cards.Add(c);
-                        c = new Card(10, "KING", "CLUBS");
+                        c = new Card(10, "K", club);
                         cards.Add(c);
-                        c = new Card(10, "KING", "SPADES");
+                        c = new Card(10, "K", spade);
                         cards.Add(c);
                         break;
                     case 3: //ACE
-                        c = new Card(11, "ACE", "HEARTS");
+                        c = new Card(11, "A", heart);
                         cards.Add(c);
-                        c = new Card(11, "ACE", "DIAMONDS");
+                        c = new Card(11, "A", diamond);
                         cards.Add(c);
-                        c = new Card(11, "ACE", "CLUBS");
+                        c = new Card(11, "A", club);
                         cards.Add(c);
-                        c = new Card(11, "ACE", "SPADES");
+                        c = new Card(11, "A", spade);
                         cards.Add(c);
                         break;
                 }
@@ -120,7 +122,7 @@ namespace demoSoftware
             String result = "";
             for (int i = 0; i < deckOfCards.Count; i++)
             {
-                result += deckOfCards[i].toString();
+                result += deckOfCards[i].toString() + "\n";
             }
             return result;
         }
