@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     xmlns:gif="http://wpfanimatedgif.codeplex.com"
-    WindowStyle="None" WindowState="Maximized" 
     Title="Demo Software" 
     >
     <!--="None" WindowState="Maximized" -->

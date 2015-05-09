@@ -76,8 +76,9 @@ namespace demoSoftware
             labels[6] = lbl7;
             labels[7] = lbl8;
             TheTimer.Tick += timer_Tick;
-            TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+            TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 60);
             canvas.Background = new ImageBrush() { ImageSource = new BitmapImage((new Uri(@"C:\welcomeScreen.jpg", UriKind.Absolute))) };
+
           
         }
 
@@ -664,7 +665,7 @@ namespace demoSoftware
             {
                 Console.WriteLine(AllPoints[i].Position.X+", "+AllPoints[i].Position.Y);
             }
-            string result = transferStringBuilder("~");
+            string result = transferStringBuilder("Dat lieks dogs.");
             string binary;
             char[] binArray;
             string transferString = result;
@@ -698,6 +699,7 @@ namespace demoSoftware
             lbl8.Background = Brushes.Black;
             if (counter < binaryList.Count)
             {
+                lbl1.Background = Brushes.White;
                 str = binaryList[counter];
 
                 if (str[0] == '1')
@@ -783,6 +785,11 @@ namespace demoSoftware
 
             result += Convert.ToString((int)asciiString, 2);
             string finalBin = "0" + result;
+            if (finalBin.Length == 7)
+            {
+                finalBin = "0" + finalBin;
+            }
+            Console.WriteLine((char)asciiString + "   "+ finalBin);
             return finalBin;
             
         }
