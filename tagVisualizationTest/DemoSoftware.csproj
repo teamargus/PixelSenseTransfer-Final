@@ -72,6 +72,9 @@
     <Compile Include="TagVisualization.xaml.cs">
       <DependentUpon>TagVisualization.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TransferManager\header.cs" />
+    <Compile Include="TransferManager\Lynx.cs" />
+    <Compile Include="TransferManager\TransferManager.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

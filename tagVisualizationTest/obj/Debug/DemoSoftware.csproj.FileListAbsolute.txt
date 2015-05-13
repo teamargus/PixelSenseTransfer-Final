@@ -18,7 +18,6 @@ C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-mast
 C:\Users\surface\Downloads\tagVisualizationTest-master\tagVisualizationTest-master\tagVisualizationTest\obj\Debug\tagVisualizationTest.pdb
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\Resources\icon.png
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\demoSoftware.xml
-C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.XML
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.exe
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.pdb
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\MainWindow.baml
@@ -39,3 +38,4 @@ C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\ta
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\WpfAnimatedGif.dll
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\WpfAnimatedGif.xml
 C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\obj\Debug\DemoSoftware.csprojResolveAssemblyReference.cache
+C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\bin\Debug\tagVisualizationTest.XML

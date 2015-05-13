@@ -160,6 +160,60 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:TransferSystem.TransferManager">
+            <summary>
+            A class that holds the internal logic to the Lynx Transfer System for a PixelSense Table.
+            </summary>
+        </member>
+        <member name="M:TransferSystem.TransferManager.#ctor(Microsoft.Surface.Presentation.Controls.TagVisualizer,System.Windows.Controls.Grid,System.Int32)">
+            <summary>
+            Primary Constructor for a TransferManager. Expected to work with one lynx
+            </summary>
+            <param name="tagger">used to initiate event handlers in TransferManager</param>
+            <param name="FrameReporter">used to initiate event handlers in TransferManager</param>
+            <param name="anticipatedLynx">the id of the lynx this TransferManager is intended to handle</param>
+        </member>
+        <member name="M:TransferSystem.TransferManager.addTagListener(Microsoft.Surface.Presentation.Controls.TagVisualizer)">
+            <summary>
+            Wrapper method to add appropriate eventhandlers to events
+            </summary>
+            <param name="tagger">the TagVisualizer object to listen to</param>
+        </member>
+        <member name="M:TransferSystem.TransferManager.addFrameReporter(System.Windows.Controls.Grid)">
+            <summary>
+            Wrapper method to add appropriate eventhandlers to events
+            </summary>
+            <param name="FrameReporter">The Grid to listen to</param>
+        </member>
+        <member name="P:TransferSystem.TransferManager.lynx">
+            <summary>
+            A logical representation of the Lynx device.
+            </summary>
+        </member>
+        <member name="E:TransferSystem.TransferManager.ReceivedData">
+            <summary>
+            Fires upon successful interpretation of a complete piece of data
+            </summary>
+        </member>
+        <member name="E:TransferSystem.TransferManager.ReceivedError">
+            <summary>
+            Fires upon the iterpretation of a complete piece of data, but the checksum fails
+            </summary>
+        </member>
+        <member name="T:TransferSystem.TransferManager.ReceivedEventHandler">
+            <summary>
+            Delegate for methods to handle the ReceivedData event
+            </summary>
+            <param name="o">object that fired the event</param>
+            <param name="Data">Custom Args class that supplies the data interpreted along with it's type</param>
+        </member>
+        <member name="T:TransferSystem.TransferManager.ReceivedErrorEventHandler">
+            <summary>
+            Delegate for methods t o handle ReceivedError event
+            </summary>
+            <param name="o">object that fired the event</param>
+            <param name="error">Custom Args class that supplies the computed and received checksums</param>
+        </member>
         <member name="T:demoSoftware.GameController">
             <summary>
             

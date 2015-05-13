@@ -21,6 +21,7 @@ using System.Windows.Media.Animation;
 using System.Collections;
 using System.Windows.Threading;
 using System.Windows.Input;
+using TransferSystem;
 
 namespace demoSoftware
 {
@@ -35,6 +36,7 @@ namespace demoSoftware
         Label[] labels = new Label[8];
         Rectangle LynxRect = new Rectangle();
 
+        bool flip = true;
         bool welcomeFlag = false;
         double xAxisSend = 0;
         double yAxisSend = 0;
@@ -54,6 +56,7 @@ namespace demoSoftware
         int counter = 0;
         private Line[] lineList = new Line[32];
         private Line[] lineList2 = new Line[32];
+        TransferManager transferManager;
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -76,9 +79,11 @@ namespace demoSoftware
             labels[6] = lbl7;
             labels[7] = lbl8;
             TheTimer.Tick += timer_Tick;
-            TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 60);
+            TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 30);
             canvas.Background = new ImageBrush() { ImageSource = new BitmapImage((new Uri(@"C:\welcomeScreen.jpg", UriKind.Absolute))) };
 
+            transferManager = new TransferManager(myTag, myGrid, 0);
+            transferManager.ReceivedData += onReceivedData;
           
         }
 
@@ -235,7 +240,7 @@ namespace demoSoftware
             for (int i = 1; i < 9; i++)
             {
                 drawboxes(x1AxisRecieveUpdated, y1AxisRecieveUpdated + (i * (18 * 2.22)),orientation);
-
+                //drawboxes(transferManager.lynx.xRecFirst, transferManager.lynx.yRecFirst + (i * (18 * 2.22)), transferManager.lynx.heading);
             }
            
         }
@@ -462,7 +467,10 @@ namespace demoSoftware
                 }
             }
         }
-
+        void onReceivedData(object sender, LynxReceivedArgs e)
+        {
+           
+        }
 
         /// <summary>
         /// draws boxes for recieving bits
@@ -665,7 +673,7 @@ namespace demoSoftware
             {
                 Console.WriteLine(AllPoints[i].Position.X+", "+AllPoints[i].Position.Y);
             }
-            string result = transferStringBuilder("Dat lieks dogs.");
+            string result = transferStringBuilder("Bet");
             string binary;
             char[] binArray;
             string transferString = result;
@@ -699,8 +707,9 @@ namespace demoSoftware
             lbl8.Background = Brushes.Black;
             if (counter < binaryList.Count)
             {
-                lbl1.Background = Brushes.White;
+                
                 str = binaryList[counter];
+
 
                 if (str[0] == '1')
                 {
@@ -734,9 +743,9 @@ namespace demoSoftware
                 {
                     lbl8.Background = Brushes.White;
                 }
-
+                lbl1.Background = Brushes.White;
             }
-
+            
             if (counter >= binaryList.Count)
             {
                 counter = 0;
@@ -752,8 +761,24 @@ namespace demoSoftware
                 TheTimer.Stop();
 
             }
-            counter++;
-
+            if (flip)
+            {
+                counter++;
+                flip = false;
+            }
+            else
+            {
+                lbl1.Background = Brushes.Black;
+                lbl2.Background = Brushes.Black;
+                lbl3.Background = Brushes.Black;
+                lbl4.Background = Brushes.Black;
+                lbl5.Background = Brushes.Black;
+                lbl6.Background = Brushes.Black;
+                lbl7.Background = Brushes.Black;
+                lbl8.Background = Brushes.Black;
+                flip = true;
+            }
+            
         }
 
         /// <summary>
@@ -768,7 +793,7 @@ namespace demoSoftware
             {
                string temp = transferString[i].ToString();
 
-               BuildString = BuildString + (temp ); //To keep whitle light stay, decrease no. of nulls.
+               BuildString = "~"+BuildString + (temp); //To keep whitle light stay, decrease no. of nulls
 
             }
             return BuildString;
