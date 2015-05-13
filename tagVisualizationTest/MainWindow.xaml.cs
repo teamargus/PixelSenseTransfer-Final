@@ -49,6 +49,7 @@ namespace demoSoftware
         double orientation = 0;
         double flashDist = (18 * 2.22) + 39;
         String str = "";
+        string betAmount;
         List<double> temp = new List<double>();
         List<double> temp1 = new List<double>();
         List<char> binArray = new List<char>();
@@ -56,7 +57,7 @@ namespace demoSoftware
         int counter = 0;
         private Line[] lineList = new Line[32];
         private Line[] lineList2 = new Line[32];
-        TransferManager transferManager;
+        //TransferManager transferManager;
         /// <summary>
         /// Default constructor.
         /// </summary>
@@ -82,8 +83,8 @@ namespace demoSoftware
             TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 30);
             canvas.Background = new ImageBrush() { ImageSource = new BitmapImage((new Uri(@"C:\welcomeScreen.jpg", UriKind.Absolute))) };
 
-            transferManager = new TransferManager(myTag, myGrid, 0);
-            transferManager.ReceivedData += onReceivedData;
+            //transferManager = new TransferManager(myTag, myGrid, 0);
+            //transferManager.ReceivedData += onReceivedData;
           
         }
 
@@ -205,6 +206,8 @@ namespace demoSoftware
             {
                 drawboxes(x1AxisRecieveUpdated, y1AxisRecieveUpdated + (i * (18 * 2.22)),orientation);
             }
+
+            
         }
 
         private void OnVisualizationMoved(object sender, TagVisualizerEventArgs e)
@@ -242,6 +245,32 @@ namespace demoSoftware
                 drawboxes(x1AxisRecieveUpdated, y1AxisRecieveUpdated + (i * (18 * 2.22)),orientation);
                 //drawboxes(transferManager.lynx.xRecFirst, transferManager.lynx.yRecFirst + (i * (18 * 2.22)), transferManager.lynx.heading);
             }
+
+            string transferredData = "";
+            if (AllPoints.Count > 0)
+            {
+                List<TouchPoint> letterList = new List<TouchPoint>();
+                letterList.Add(AllPoints[0]);
+                for (int i = 1; i < AllPoints.Count; i++)
+                {
+                    if (AllPoints[i].Position.Y < AllPoints[i - 1].Position.Y)
+                    {
+                        transferredData = transferredData + constructBin(letterList);
+                        letterList.Clear();
+                    }
+                    letterList.Add(AllPoints[i]);
+                }
+                transferredData = transferredData + constructBin(letterList);
+                Console.WriteLine(transferredData);
+                textBox.Text = transferredData;
+                betAmount = transferredData;
+                betAmountLabel.Content = betAmount;
+                transferredData = "";
+                AllPoints.Clear();
+                letterList.Clear();
+                temp.Clear();
+                temp1.Clear();
+            }
            
         }
 
@@ -259,39 +288,21 @@ namespace demoSoftware
             }
 
 
-            string transferredData = "";
-            if (AllPoints.Count > 0)
-            {
-                List<TouchPoint> letterList = new List<TouchPoint>();
-                letterList.Add(AllPoints[0]);
-                for (int i = 1; i < AllPoints.Count; i++)
-                {
-
-                    if (AllPoints[i].Position.Y < AllPoints[i - 1].Position.Y)
-                    {
-                        transferredData = transferredData + constructBin(letterList);
-                        letterList.Clear();
-                    }
-                    letterList.Add(AllPoints[i]);
+           
+        }
 
 
-                }
-                transferredData = transferredData + constructBin(letterList);
-                Console.WriteLine(transferredData);
-                textBox.Text = transferredData;
-                transferredData = "";
-                AllPoints.Clear();
-                letterList.Clear();
-                temp.Clear();
-                temp1.Clear();
-            }
-
+        private void Label_Loaded(object sender, RoutedEventArgs e)
+        {
+            // ... Get label.
+            var label = sender as Label;
+            // ... Set date in content.
+            label.Content = betAmount;
         }
 
         #endregion
 
         #region RecieveStuff
-        
         /// <summary>
         /// 
         /// </summary>
@@ -793,7 +804,7 @@ namespace demoSoftware
             {
                string temp = transferString[i].ToString();
 
-               BuildString = "~"+BuildString + (temp); //To keep whitle light stay, decrease no. of nulls
+               BuildString = BuildString + (temp); //To keep whitle light stay, decrease no. of nulls
 
             }
             return BuildString;

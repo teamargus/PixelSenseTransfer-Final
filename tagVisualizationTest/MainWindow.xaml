@@ -6,11 +6,19 @@
     Title="Demo Software" 
     >
     <!--="None" WindowState="Maximized" -->
-  <Grid Name="myGrid" MinHeight="1080" MinWidth="1920" 
+    <Grid Name="myGrid" MinHeight="1080" MinWidth="1920" 
          Stylus.IsFlicksEnabled="False"
         >
-      
-     <!--  TouchDown="onTouchDown" -->
+
+        <Label
+        Name="betAmountLabel"
+	    HorizontalAlignment="Stretch"
+	    Margin="800, 500, 0, 0"
+	    VerticalAlignment="Center"
+	    Padding="5"
+	    FontSize="70"/>
+
+        <!--  TouchDown="onTouchDown" -->
         <s:TagVisualizer Name="myTag"             
             VisualizationAdded="OnVisualizationAdded"
             VisualizationRemoved="OnVisualizationRemoved"
