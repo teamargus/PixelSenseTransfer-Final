@@ -65,11 +65,11 @@ namespace demoSoftware
         Label potLabel, chipLabel;
 
         int cardCounter = 0;
+
         //TransferManager transferManager;
         /// <summary>
         /// Default constructor.
         /// </summary>
-
         public MainWindow()
         {
             InitializeComponent();
@@ -109,6 +109,11 @@ namespace demoSoftware
           
         }
 
+        /// <summary>
+        /// Handles Exception for the keys
+        /// </summary>
+        /// <param name="sender">sender object</param>
+        /// <param name="e">Event Arguements</param>
         private void HandleEsc(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
@@ -232,6 +237,9 @@ namespace demoSoftware
             
         }
 
+        /// <summary>
+        /// Initializes the Game after recieving command
+        /// </summary>
         private void Init(){
             pot = 0;
             controller.setNewDeck();
@@ -284,6 +292,11 @@ namespace demoSoftware
             }
         }
 
+        /// <summary>
+        /// Changes the position of Lynx Reciever screen on table upon lynx movement
+        /// </summary>
+        /// <param name="sender">object sender</param>
+        /// <param name="e">Tag Visualizer Event</param>
         private void OnVisualizationMoved(object sender, TagVisualizerEventArgs e)
         {
             
@@ -319,11 +332,13 @@ namespace demoSoftware
                 drawboxes(x1AxisRecieveUpdated, y1AxisRecieveUpdated + (i * (18 * 2.22)),orientation);
                 //drawboxes(transferManager.lynx.xRecFirst, transferManager.lynx.yRecFirst + (i * (18 * 2.22)), transferManager.lynx.heading);
             }
-
-            
-           
         }
 
+        /// <summary>
+        /// Destroys the transfer screen on removal of the lynx device.
+        /// </summary>
+        /// <param name="sender">sender object</param>
+        /// <param name="e">Tag Visualizer Event</param>
         private void OnVisualizationRemoved(object sender, TagVisualizerEventArgs e)
         {
             canvas.Children.Remove(LynxRect);
@@ -338,9 +353,6 @@ namespace demoSoftware
             }
 
             ClearCards();
-
-
-           
         }
 
 
@@ -350,10 +362,10 @@ namespace demoSoftware
 
         #region RecieveStuff
         /// <summary>
-        /// 
+        /// Constructs the binary after recieving the triggers from the touch points from the Lynx
         /// </summary>
-        /// <param name="tp"></param>
-        /// <returns></returns>
+        /// <param name="tp">list of touch points (1 values in binary)</param>
+        /// <returns>string of constructed binary by adding required 0s</returns>
         public string constructBin(List<TouchPoint> tp)
         {
             String[] bin = { "0", "0", "0", "0", "0", "0", "0", "0" };
@@ -480,10 +492,10 @@ namespace demoSoftware
         }
 
         /// <summary>
-        /// 
+        /// get byte array from binary string given.
         /// </summary>
-        /// <param name="binary"></param>
-        /// <returns></returns>
+        /// <param name="binary">binary string</param>
+        /// <returns>list of bytes</returns>
         public Byte[] GetBytesFromBinaryString(String binary)
         {
             var list = new List<Byte>();
@@ -498,6 +510,12 @@ namespace demoSoftware
             return list.ToArray();
         }
 
+
+        /// <summary>
+        /// Captures touch frame reported on screen of the table, so that it can detect touch points for the binary conversion
+        /// </summary>
+        /// <param name="sender">object sender</param>
+        /// <param name="e">touch frame event arguements</param>
         void Touch_FrameReported(object sender, TouchFrameEventArgs e)
         {
             Console.WriteLine(e.GetTouchPoints(this.myGrid).Count);
@@ -535,13 +553,19 @@ namespace demoSoftware
             }
             
         }
+
+        /// <summary>
+        /// on Recieve Data Empty function - Error Correction goes here (not implemented)
+        /// </summary>
+        /// <param name="sender">sender object</param>
+        /// <param name="e">Lynx Recieved Arguements</param>
         void onReceivedData(object sender, LynxReceivedArgs e)
         {
            
         }
 
         /// <summary>
-        /// draws boxes for recieving bits
+        /// draws boxes for recieving bits. Also includes code for orientation(Commented)
         /// </summary>
         /// <param name="x1Axis">start of box X Axis</param>
         /// <param name="y1Axis">start of box Y Axis</param>
@@ -734,6 +758,11 @@ namespace demoSoftware
 
         #region SendStuff
         
+        /// <summary>
+        /// Update button to update the game screen after transfer recieved
+        /// </summary>
+        /// <param name="sender">sender object</param>
+        /// <param name="e">button arguements</param>
         private void start_button_Click(object sender, RoutedEventArgs e)
         {
             string transferredData = "";
@@ -881,6 +910,11 @@ namespace demoSoftware
                 TheTimer.Start();*/
         }
 
+
+        /// <summary>
+        /// Sends data when it is ready to transfer to lynx device. It also builds string with "~" to distinghuish between each character. It is not required though.
+        /// </summary>
+        /// <param name="str">transfer string to send</param>
         private void sendData(String str)
         {
             counter = 0;
@@ -906,6 +940,9 @@ namespace demoSoftware
 
         }
 
+        /// <summary>
+        /// Clear the cards from the deck to start fresh
+        /// </summary>
         private void ClearCards()
         {
 
@@ -919,8 +956,9 @@ namespace demoSoftware
                 }
             }
         }
+
         /// <summary>
-        /// Flashes binary bits
+        /// Flashes binary bits on table
         /// </summary>
         /// <param name="sender">sender</param>
         /// <param name="e">event arguements</param>

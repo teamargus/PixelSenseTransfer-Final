@@ -250,6 +250,12 @@ namespace TransferSystem
             }
         
         }
+
+        /// <summary>
+        /// This function recognises tag, and gets relative x and y axis. It also gets orientation of the tag. This function is not used by software.
+        /// </summary>
+        /// <param name="sender">object sender</param>
+        /// <param name="e">tag visualizer event arguements</param>
         private void onTagAdded(object sender, TagVisualizerEventArgs e)
         {
             TagVisualization tag = e.TagVisualization;
@@ -268,6 +274,12 @@ namespace TransferSystem
 
            
         }
+
+        /// <summary>
+        /// Changes the position of Lynx Reciever screen on table upon lynx movement. This function is not used by software.
+        /// </summary>
+        /// <param name="sender">object sender</param>
+        /// <param name="e">tag visualizer event arguements</param>
         private void onTagMoved(object sender, TagVisualizerEventArgs e)
         {
             TagVisualization tag = e.TagVisualization;
@@ -280,6 +292,12 @@ namespace TransferSystem
             lynx.xRecFirst = lynx.tagX + (((18 * 2.22) + 39) - 40) - (18 * 2.22);
             lynx.yRecFirst = lynx.tagY + ((26 * 2.22));
         }
+
+        /// <summary>
+        /// Destroys the transfer screen on removal of the lynx device. This function is not used by software.
+        /// </summary>
+        /// <param name="sender">object sender</param>
+        /// <param name="e">tag visualizer event arguements</param>
         private void onTagRemoved(object sender, TagVisualizerEventArgs e)
         {
             LynxAvailable = false;
@@ -287,6 +305,10 @@ namespace TransferSystem
         #endregion
 
         #region Receiving Data
+
+        /// <summary>
+        /// Recieves stuff.
+        /// </summary>
         public void receive()
         {
             byte h1 = calculateByte(0);
@@ -347,6 +369,11 @@ namespace TransferSystem
 
         }
 
+        /// <summary>
+        /// calculates byte
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
         private byte calculateByte(int i)
         {
             byte returnByte = 0;
