@@ -219,38 +219,17 @@
             
             </summary>
         </member>
-        <member name="M:demoSoftware.GameController.#ctor">
+        <member name="M:demoSoftware.GameController.play">
             <summary>
             
             </summary>
+            
         </member>
-        <member name="M:demoSoftware.GameController.setDealer(demoSoftware.Player)">
+        <member name="M:demoSoftware.GameController.dealerHit">
             <summary>
             
             </summary>
             <param name="d"></param>
-        </member>
-        <member name="M:demoSoftware.GameController.setDefaultPlayer">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:demoSoftware.GameController.setPot(System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="val"></param>
-        </member>
-        <member name="M:demoSoftware.GameController.setDeck(demoSoftware.Deck)">
-            <summary>
-            
-            </summary>
-            <param name="val"></param>
-        </member>
-        <member name="M:demoSoftware.GameController.play">
-            <summary>
-            method that runs the blackjack game
-            </summary>
         </member>
         <member name="M:demoSoftware.GameController.hit(demoSoftware.Player)">
             <summary>
@@ -258,16 +237,29 @@
             </summary>
             <param name="p"></param>
         </member>
-        <member name="M:demoSoftware.GameController.deal">
+        <member name="M:demoSoftware.GameController.busted(demoSoftware.Player)">
             <summary>
             
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:demoSoftware.GameController.deal">
+            <summary>
+            deals the initial cards to the dealer and player
             </summary>
         </member>
         <member name="M:demoSoftware.GameController.getBet">
             <summary>
-            
+            asks user for bet
             </summary>
-            <returns></returns>
+            <returns>result of the users bet amount</returns>
+        </member>
+        <member name="M:demoSoftware.GameController.hitOrStay">
+            <summary>
+            asks the user to hit or stay
+            </summary>
+            <returns>0 if stay, 1 if hit</returns>
         </member>
         <member name="M:demoSoftware.GameController.startPlaying">
             <summary>

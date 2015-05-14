@@ -31,11 +31,12 @@ namespace demoSoftware
     public partial class MainWindow : SurfaceWindow
     {
         List<string> binaryList = new List<string>();
+        List<string> cardList = new List<string>();
         private DispatcherTimer TheTimer = new DispatcherTimer();
         Image[] imgArray = new Image[10];
         Label[] labels = new Label[8];
         Rectangle LynxRect = new Rectangle();
-
+        int pot = 0;
         bool flip = true;
         bool welcomeFlag = false;
         double xAxisSend = 0;
@@ -49,14 +50,21 @@ namespace demoSoftware
         double orientation = 0;
         double flashDist = (18 * 2.22) + 39;
         String str = "";
+        string command;
         string betAmount;
         List<double> temp = new List<double>();
         List<double> temp1 = new List<double>();
         List<char> binArray = new List<char>();
         List<TouchPoint> AllPoints = new List<TouchPoint>();
         int counter = 0;
+        int xLoc = 0;
         private Line[] lineList = new Line[32];
         private Line[] lineList2 = new Line[32];
+        GameController controller = new GameController();
+        Player player, dealer;
+        Label potLabel, chipLabel;
+
+        int cardCounter = 0;
         //TransferManager transferManager;
         /// <summary>
         /// Default constructor.
@@ -82,7 +90,20 @@ namespace demoSoftware
             TheTimer.Tick += timer_Tick;
             TheTimer.Interval = new TimeSpan(0, 0, 0, 0, 30);
             canvas.Background = new ImageBrush() { ImageSource = new BitmapImage((new Uri(@"C:\welcomeScreen.jpg", UriKind.Absolute))) };
+            chipLabel = new Label();
+            potLabel = new Label();
 
+            Canvas.SetTop(chipLabel,200);
+            Canvas.SetRight(chipLabel, 100);
+            chipLabel.Height = 50;
+            chipLabel.Width = 200;
+
+            Canvas.SetTop(potLabel, 400);
+            Canvas.SetRight(potLabel, 100);
+            potLabel.Height = 50;
+            potLabel.Width = 200;
+            canvas.Children.Add(chipLabel);
+            canvas.Children.Add(potLabel);
             //transferManager = new TransferManager(myTag, myGrid, 0);
             //transferManager.ReceivedData += onReceivedData;
           
@@ -182,7 +203,7 @@ namespace demoSoftware
             textBox.Clear();
 
             LynxTagVisualization tag = (LynxTagVisualization)e.TagVisualization;
-
+             
             orientation = tag.Orientation;
             xAxisTag = tag.Center.X;
             yAxisTag = tag.Center.Y;
@@ -207,7 +228,60 @@ namespace demoSoftware
                 drawboxes(x1AxisRecieveUpdated, y1AxisRecieveUpdated + (i * (18 * 2.22)),orientation);
             }
 
+            Init();
             
+        }
+
+        private void Init(){
+            pot = 0;
+            controller.setNewDeck();
+            controller.deal();
+       
+            player = controller.getPlayer();
+            dealer = controller.getDealer();
+            potLabel.Content = "Pot: ";
+            chipLabel.Content = "Chips: $"+player.getWallet();
+            textBox.Text = textBox.Text + player.getWallet();
+
+            for (int i = 0; i < 2; i++)
+            {
+                string card = "";
+               
+                Image dealerCard = dealer.getHand()[i].getImage();
+                Image playerCard = player.getHand()[i].getImage();
+
+                Canvas.SetTop(dealerCard, 200);
+                Canvas.SetLeft(dealerCard, 500+(i*20));
+
+                Canvas.SetTop(playerCard, 700);
+                Canvas.SetLeft(playerCard, 500 + (i*20));
+
+                canvas.Children.Add(dealerCard);
+                canvas.Children.Add(playerCard);
+                xLoc = i;
+            }
+            player.calculateScore();
+            dealer.calculateScore();
+            if (player.getScore() == 21)
+            {
+                textBox.Text = "Player Wins";
+                player.setWallet(pot + player.getWallet());
+                player.reset();
+                dealer.reset();
+                ClearCards();
+                Init();
+            }
+            else if (dealer.getScore() == 21)
+            {
+                textBox.Text = "Dealer Wins";
+                player.reset();
+                dealer.reset();
+                ClearCards();
+                Init();
+            }
+            else { 
+            
+            }
         }
 
         private void OnVisualizationMoved(object sender, TagVisualizerEventArgs e)
@@ -246,31 +320,7 @@ namespace demoSoftware
                 //drawboxes(transferManager.lynx.xRecFirst, transferManager.lynx.yRecFirst + (i * (18 * 2.22)), transferManager.lynx.heading);
             }
 
-            string transferredData = "";
-            if (AllPoints.Count > 0)
-            {
-                List<TouchPoint> letterList = new List<TouchPoint>();
-                letterList.Add(AllPoints[0]);
-                for (int i = 1; i < AllPoints.Count; i++)
-                {
-                    if (AllPoints[i].Position.Y < AllPoints[i - 1].Position.Y)
-                    {
-                        transferredData = transferredData + constructBin(letterList);
-                        letterList.Clear();
-                    }
-                    letterList.Add(AllPoints[i]);
-                }
-                transferredData = transferredData + constructBin(letterList);
-                Console.WriteLine(transferredData);
-                textBox.Text = transferredData;
-                betAmount = transferredData;
-                betAmountLabel.Content = betAmount;
-                transferredData = "";
-                AllPoints.Clear();
-                letterList.Clear();
-                temp.Clear();
-                temp1.Clear();
-            }
+            
            
         }
 
@@ -287,18 +337,14 @@ namespace demoSoftware
                 }
             }
 
+            ClearCards();
+
 
            
         }
 
 
-        private void Label_Loaded(object sender, RoutedEventArgs e)
-        {
-            // ... Get label.
-            var label = sender as Label;
-            // ... Set date in content.
-            label.Content = betAmount;
-        }
+        
 
         #endregion
 
@@ -382,7 +428,7 @@ namespace demoSoftware
                     if (xAxisRecieve > lineList2[8].X1 && xAxisRecieve < lineList2[8].X2 &&
                         yAxisRecieve > temp1[2 * 8] - 24 && yAxisRecieve < temp1[2 * 8])
                     {
-                        //Console.WriteLine("a");
+                        //Console.WriteLine("ace");
                         binArray.Add('a');
                     }
 
@@ -454,29 +500,40 @@ namespace demoSoftware
 
         void Touch_FrameReported(object sender, TouchFrameEventArgs e)
         {
-            foreach (TouchPoint _touchPoint in e.GetTouchPoints(this.myGrid))
-            {
-                int id = _touchPoint.TouchDevice.Id;
-                if (!_touchPoint.TouchDevice.GetIsTagRecognized() && !_touchPoint.TouchDevice.GetIsFingerRecognized())
+            Console.WriteLine(e.GetTouchPoints(this.myGrid).Count);
+           
+                foreach (TouchPoint _touchPoint in e.GetTouchPoints(this.myGrid))
                 {
-
-                    bool flag = false;
-                    for (int i = 0; i < AllPoints.Count; i++)
-                    {
-                        if (AllPoints[i].TouchDevice.Id == id)
+                        int id = _touchPoint.TouchDevice.Id;
+                        myGrid.InvalidateVisual();
+                        if (!_touchPoint.TouchDevice.GetIsTagRecognized() && !_touchPoint.TouchDevice.GetIsFingerRecognized())
                         {
-                            flag = true;
-                        }
-                    }
 
-                    if (!flag)
-                    {
-                        AllPoints.Add(_touchPoint);
-                        flag = false;
-                    }
+                            bool flag = false;
+                            for (int i = 0; i < AllPoints.Count; i++)
+                            {
+                                if (AllPoints[i].TouchDevice.Id == id)
+                                {
+                                    flag = true;
+                                }
+                            }
 
+                            if (!flag)
+                            {
+                                AllPoints.Add(_touchPoint);
+                                flag = false;
+                            }
+                    }
+                       
+                
                 }
+
+            if (e.GetTouchPoints(this.myGrid).Count == 1 && AllPoints.Count>0)
+            {
+                //Game stuff recieve
+                
             }
+            
         }
         void onReceivedData(object sender, LynxReceivedArgs e)
         {
@@ -679,12 +736,135 @@ namespace demoSoftware
         
         private void start_button_Click(object sender, RoutedEventArgs e)
         {
+            string transferredData = "";
+            if (AllPoints.Count > 0)
+            {
+                List<TouchPoint> letterList = new List<TouchPoint>();
+                letterList.Add(AllPoints[0]);
+                for (int i = 1; i < AllPoints.Count; i++)
+                {
+                    if (AllPoints[i].Position.Y < AllPoints[i - 1].Position.Y)
+                    {
+                        transferredData = transferredData + constructBin(letterList);
+                        letterList.Clear();
+                    }
+                    letterList.Add(AllPoints[i]);
+                }
+                transferredData = transferredData + constructBin(letterList);
+                Console.WriteLine(transferredData);
+                textBox.Text = transferredData;
+                if (transferredData.Contains(','))
+                {
+                    string[] words = transferredData.Split(',');
+                    command = words[0];
+                    betAmount = words[1];
+                    Random rng = new Random();
+                    if (command.Equals("B"))
+                    {
+                        pot = (2 * Convert.ToInt32(betAmount));
+                        player.setWallet(player.getWallet() - Convert.ToInt32(betAmount));
+                        potLabel.Content = "Pot: $" + pot;
+                        for (int i = 0; i < player.getHand().Count(); i++)
+                        {
+                            string card = "";
+                            card = (player.getHand()[i].getSuit()[0]).ToString() + (player.getHand()[i].getFace()[0]).ToString();
+                            sendData(card);
+                        }
+                    }
+                    else if (command.Equals("H"))
+                    {
+                        player.getHand().Add(controller.deck.getDeck()[0]);
+
+                        controller.deck.getDeck().RemoveAt(0);
+                        string card = "";
+                        card = (player.getHand()[player.getHand().Count - 1].getSuit()[0]).ToString() + (player.getHand()[player.getHand().Count - 1].getFace()[0]).ToString();
+                        sendData(card);
+                        Image playerCard = player.getHand()[player.getHand().Count - 1].getImage();
+                        Canvas.SetTop(playerCard, 700);
+                        xLoc = xLoc + 1;
+                        Canvas.SetLeft(playerCard, 500 + (xLoc * 20));
+                        canvas.Children.Add(playerCard);
+                        player.calculateScore();
+                        if (player.getScore() > 21)
+                        {
+                            textBox.Text = "Player Bust!";
+                            player.reset();
+                            dealer.reset();
+                            xLoc = 0;
+                            ClearCards();
+                            Init();
+
+                        }
+
+                    }
+                    else if (command.Equals("S"))
+                    {
+                        while (dealer.getScore() <= 17)
+                        {
+                            dealer.getHand().Add(controller.deck.getDeck()[0]);
+                            controller.deck.getDeck().RemoveAt(0);
+                            dealer.calculateScore();
+                            Image dealerCard = dealer.getHand()[dealer.getHand().Count - 1].getImage();
+                            Canvas.SetTop(dealerCard, 200);
+                            xLoc = xLoc + 1;
+                            Canvas.SetLeft(dealerCard, 500 + (xLoc * 20));
+                            canvas.Children.Add(dealerCard);
+                        }
+                        if (dealer.getScore() > 21)
+                        {
+                            textBox.Text = "Dealer Bust!";
+                            player.setWallet(pot + player.getWallet());
+                            player.reset();
+                            dealer.reset();
+                            xLoc = 0;
+                            ClearCards();
+                            Init();
+                        }
+                        else
+                        {
+                            if (player.getScore() > dealer.getScore())
+                            {
+                                textBox.Text = "Player Wins";
+                                player.setWallet(pot + player.getWallet());
+                                player.reset();
+                                dealer.reset();
+                                xLoc = 0;
+                                ClearCards();
+                                Init();
+                            }
+                            else
+                            {
+                                textBox.Text = "Dealer Wins";
+                                player.reset();
+                                dealer.reset();
+                                xLoc = 0;
+                                ClearCards();
+                                Init();
+                            }
+                        }
+                    }
+
+
+                }
+                else
+                {
+                    textBox.Text = "Bad Read";
+                }
+                
+
+                transferredData = "";
+                AllPoints.Clear();
+                letterList.Clear();
+               // temp.Clear();
+               // temp1.Clear();
+            }
+            /*
             counter = 0;
             for (int i = 0; i < AllPoints.Count; i++)
             {
                 Console.WriteLine(AllPoints[i].Position.X+", "+AllPoints[i].Position.Y);
             }
-            string result = transferStringBuilder("Bet");
+            string result = transferStringBuilder("h3");
             string binary;
             char[] binArray;
             string transferString = result;
@@ -698,9 +878,47 @@ namespace demoSoftware
                     location++;
                 }
                 
-                TheTimer.Start();
+                TheTimer.Start();*/
         }
 
+        private void sendData(String str)
+        {
+            counter = 0;
+            for (int i = 0; i < AllPoints.Count; i++)
+            {
+                Console.WriteLine(AllPoints[i].Position.X + ", " + AllPoints[i].Position.Y);
+            }
+            string result = transferStringBuilder(str);
+            string binary;
+            char[] binArray;
+            string transferString = result;
+            binArray = transferString.ToCharArray();
+            int location = 0;
+
+            while (location < transferString.Length)
+            {
+                binary = ConvertToBinary(transferString[location]);
+                binaryList.Add(binary);
+                location++;
+            }
+
+            TheTimer.Start();
+
+        }
+
+        private void ClearCards()
+        {
+
+            int intTotalChildren = canvas.Children.Count - 1;
+            for (int intCounter = intTotalChildren; intCounter >= 0; intCounter--)
+            {
+                if (canvas.Children[intCounter].GetType() == typeof(Image))
+                {
+                    Image ucCurrentChild = (Image)canvas.Children[intCounter];
+                    canvas.Children.Remove(ucCurrentChild);
+                }
+            }
+        }
         /// <summary>
         /// Flashes binary bits
         /// </summary>

@@ -113,6 +113,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -124,6 +125,73 @@
   <ItemGroup>
     <Resource Include="flash.png" />
     <Resource Include="background.png" />
+    <Resource Include="Resources\Deck\10_of_clubs.png" />
+    <Resource Include="Resources\Deck\10_of_diamonds.png" />
+    <Resource Include="Resources\Deck\10_of_hearts.png" />
+    <Resource Include="Resources\Deck\10_of_spades.png" />
+    <Resource Include="Resources\Deck\2_of_clubs.png" />
+    <Resource Include="Resources\Deck\2_of_diamonds.png" />
+    <Resource Include="Resources\Deck\2_of_hearts.png" />
+    <Resource Include="Resources\Deck\2_of_spades.png" />
+    <Resource Include="Resources\Deck\3_of_clubs.png" />
+    <Resource Include="Resources\Deck\3_of_diamonds.png" />
+    <Resource Include="Resources\Deck\3_of_hearts.png" />
+    <Resource Include="Resources\Deck\3_of_spades.png" />
+    <Resource Include="Resources\Deck\4_of_clubs.png" />
+    <Resource Include="Resources\Deck\4_of_diamonds.png" />
+    <Resource Include="Resources\Deck\4_of_hearts.png" />
+    <Resource Include="Resources\Deck\4_of_spades.png" />
+    <Resource Include="Resources\Deck\5_of_clubs.png" />
+    <Resource Include="Resources\Deck\5_of_diamonds.png" />
+    <Resource Include="Resources\Deck\5_of_hearts.png" />
+    <Resource Include="Resources\Deck\5_of_spades.png" />
+    <Resource Include="Resources\Deck\6_of_clubs.png" />
+    <Resource Include="Resources\Deck\6_of_diamonds.png" />
+    <Resource Include="Resources\Deck\6_of_hearts.png" />
+    <Resource Include="Resources\Deck\6_of_spades.png" />
+    <Resource Include="Resources\Deck\7_of_clubs.png" />
+    <Resource Include="Resources\Deck\7_of_diamonds.png" />
+    <Resource Include="Resources\Deck\7_of_hearts.png" />
+    <Resource Include="Resources\Deck\7_of_spades.png" />
+    <Resource Include="Resources\Deck\8_of_clubs.png" />
+    <Resource Include="Resources\Deck\8_of_diamonds.png" />
+    <Resource Include="Resources\Deck\8_of_hearts.png" />
+    <Resource Include="Resources\Deck\8_of_spades.png" />
+    <Resource Include="Resources\Deck\9_of_clubs.png" />
+    <Resource Include="Resources\Deck\9_of_diamonds.png" />
+    <Resource Include="Resources\Deck\9_of_hearts.png" />
+    <Resource Include="Resources\Deck\9_of_spades.png" />
+    <Resource Include="Resources\Deck\ace_of_clubs.png" />
+    <Resource Include="Resources\Deck\ace_of_diamonds.png" />
+    <Resource Include="Resources\Deck\ace_of_hearts.png" />
+    <Resource Include="Resources\Deck\ace_of_spades.png" />
+    <Resource Include="Resources\Deck\ace_of_spades2.png" />
+    <Resource Include="Resources\Deck\black_joker.png" />
+    <Resource Include="Resources\Deck\jack_of_clubs.png" />
+    <Resource Include="Resources\Deck\jack_of_clubs2.png" />
+    <Resource Include="Resources\Deck\jack_of_diamonds.png" />
+    <Resource Include="Resources\Deck\jack_of_diamonds2.png" />
+    <Resource Include="Resources\Deck\jack_of_hearts.png" />
+    <Resource Include="Resources\Deck\jack_of_hearts2.png" />
+    <Resource Include="Resources\Deck\jack_of_spades.png" />
+    <Resource Include="Resources\Deck\jack_of_spades2.png" />
+    <Resource Include="Resources\Deck\king_of_clubs.png" />
+    <Resource Include="Resources\Deck\king_of_clubs2.png" />
+    <Resource Include="Resources\Deck\king_of_diamonds.png" />
+    <Resource Include="Resources\Deck\king_of_diamonds2.png" />
+    <Resource Include="Resources\Deck\king_of_hearts.png" />
+    <Resource Include="Resources\Deck\king_of_hearts2.png" />
+    <Resource Include="Resources\Deck\king_of_spades.png" />
+    <Resource Include="Resources\Deck\king_of_spades2.png" />
+    <Resource Include="Resources\Deck\queen_of_clubs.png" />
+    <Resource Include="Resources\Deck\queen_of_clubs2.png" />
+    <Resource Include="Resources\Deck\queen_of_diamonds.png" />
+    <Resource Include="Resources\Deck\queen_of_diamonds2.png" />
+    <Resource Include="Resources\Deck\queen_of_hearts.png" />
+    <Resource Include="Resources\Deck\queen_of_hearts2.png" />
+    <Resource Include="Resources\Deck\queen_of_spades.png" />
+    <Resource Include="Resources\Deck\queen_of_spades2.png" />
+    <Resource Include="Resources\Deck\red_joker.png" />
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -132,6 +200,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

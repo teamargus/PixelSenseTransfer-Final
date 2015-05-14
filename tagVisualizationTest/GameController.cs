@@ -11,130 +11,122 @@ namespace demoSoftware
     /// </summary>
     class GameController
     {
-        private Player dealer;
-        private Player player;
-        private int pot;
-        private Deck deck;
+        public static Player dealer;
+        public static Player player;
+        public static int pot;
+        public  Deck deck;
 
-        /// <summary>
-        /// 
-        /// </summary>
         public GameController()
         {
-            setDealer(new Player(-1, "Dealer"));
+            setDealer(new Player(100000, "Dealer"));
             setDefaultPlayer();
             setPot(0);
             setDeck(new Deck());
         }
+
+        private void setDealer(Player d) { dealer = d; }
+        private void setDefaultPlayer() { player = new Player(10000, "Bilbo Baggins"); }
+        private void setPot(int val) { pot = val; }
+        private void setDeck(Deck val) { deck = val; }
+
+        public void setNewDeck()
+        {
+            deck = new Deck();
+        }
+        public Player getPlayer(){
+            return player;
+        }
+
+        public Player getDealer()
+        {
+            return dealer;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// 
+        public void play()
+        {
+            //Console.WriteLine(deck.toString());
+            bool play = true;
+            while (true)
+            {
+                pot = 0;
+                if (play)
+                {
+                    //ask user for a valid bet amount
+                    int bet = getBet(); 
+                    //if valid subtract bet amount from players allet
+                    player.setWallet(player.getWallet() - bet); 
+
+                    //add bet amount to the pot
+                    int newPot = bet * 2; 
+                    setPot(newPot);
+
+                    bool playerBust = false, dealerBust = false, playerWins = false;
+                    //deal initial cards
+                    deal();
+                    player.calculateScore();
+                    if (player.getScore() != 21)
+
+                        //ask user to hit or stay
+                        hitOrStay();
+                    //if user busts, they lose and go to game over
+                    playerBust = busted(player);
+
+                    if (!playerBust)
+                    {
+                        //show the dealers cards and score
+                        dealer.calculateScore();
+                        sendData(dealer.getScore().ToString());
+                        sendData(dealer.dealerToString());
+                        //dealer hits until value >= 17
+                        dealerHit();
+                        dealerBust = busted(dealer);
+                        //determine who won
+                        if (dealerBust || (player.getScore() > dealer.getScore()))
+                            playerWins = true;
+                    }
+                    //if user wins, add pot*2 to their wallet
+                    if (playerWins)
+                    {
+                        player.setWallet(player.getWallet() + pot);
+                        sendData("You Won: $" + pot);//Console.WriteLine("You won: " + pot);
+                    }
+                    else { 
+                        sendData("You Lose"); 
+                    }
+
+                    play = gameOverState();
+                }
+                else {
+                    break;
+                }
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="d"></param>
-        private void setDealer(Player d) { this.dealer = d; }
-        /// <summary>
-        /// 
-        /// </summary>
-        private void setDefaultPlayer() { this.player = new Player(10000, "Default Player"); }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="val"></param>
-        private void setPot(int val) { this.pot = val; }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="val"></param>
-        private void setDeck(Deck val) { this.deck = val; }
-
-        /// <summary>
-        /// method that runs the blackjack game
-        /// </summary>
-        private void play()
+        public void dealerHit()
         {
-            bool inMenu = true, betting = false, playing = false, gameOver = false;
-            while (inMenu)
+            while (dealer.getScore() < 17)
             {
-                //ask user if they want to play
-                Console.Write("Hello %s, would you like to play a game? (Y)es or (N)o", player.getID());
-                //get user input
-                string userInput = "y"; //Console.ReadLine();
-                //if yes go to betting
-                if (userInput.Equals("y"))
-                {
-                    betting = true;
-                    inMenu = false;
+                Card c = deck.getDeck()[0];
+                deck.getDeck().RemoveAt(0);
+                dealer.getHand().Add(c);
+                
+                dealer.calculateScore();
+                sendData("Dealer hits: " + c.toString());//Console.WriteLine("Dealer hits: " + c.toString());
+                sendData("Dealer: " + dealer.getScore());//Console.WriteLine("Dealer: " + dealer.getScore());
+
+                if (dealer.getScore() > 21) {
+                    sendData("Dealer Busts");//Console.WriteLine("Dealer Busts!"); 
                 }
-                //else go to game over
-                else
-                {
-                    gameOver = true;
-                    inMenu = false;
-                }
-            }
-
-            while (betting)
-            {
-                //show user their current wallet balance
-                Console.WriteLine(player.toString());
-                Console.Write("Enter a valid amount to bet: ");
-
-                //ask user for a valid bet amount
-                string userInput = Console.ReadLine();
-                int bet = int.Parse(userInput);
-                //if valid subtract bet amount from players wallet
-                player.setWallet(player.getWallet() - bet);
-
-                //add bet amount to the pot
-                setPot(bet);
-
-                //change the gamestat and start playing
-                playing = true;
-                betting = false;
-            }
-            
-            while (playing)
-            {
-                //deal initial cards
-                deal();
-                //ask user to hit or stay
-
-                //if hit, continue until bust or stay
-                //if user busts, they lose and go to game over
-
-                //dealer hits until value >= 17
-
-                //determine who won
-                //check if anyone busted
-
-                //compare values
-
-                //if user wins, add pot*2 to their wallet
-
-                //go to game over
-                gameOver = true;
-                playing = false;
-            }
-            while (gameOver)
-            {
-                //ask user if they want to play again
-                Console.Write("%s, would you like to play again? (Y)es or (N)o", player.getID());
-                //get user input
-                string userInput = "y"; //Console.ReadLine();
-                //if yes go to betting
-                if (userInput.Equals("y"))
-                {
-                    inMenu = true;
-                    gameOver = false;
-                }
-                //else exit program
-                else
-                {
-                    gameOver = false;
-                }
-
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -142,7 +134,7 @@ namespace demoSoftware
         private void hit(Player p)
         {
             //grab next card from deck
-            Card c = this.deck.getDeck()[0];
+            Card c = deck.getDeck()[0];
 
             //add card to players hand
             p.getHand().Add(c);
@@ -151,39 +143,96 @@ namespace demoSoftware
         /// <summary>
         /// 
         /// </summary>
-        private void deal()
-        {//deal initial cards to user and dealer
-            //grab first 4 cards from deck
-            Card c1, c2, c3, c4;
-            c1 = this.deck.getDeck()[0];
-            this.deck.getDeck().RemoveAt(0);
-            c2 = this.deck.getDeck()[1];
-            c3 = this.deck.getDeck()[2];
-            c4 = this.deck.getDeck()[3];
+        /// <param name="p"></param>
+        /// <returns></returns>
+        private bool busted(Player p)
+        {
+            bool result = false;
 
-            //remove those cards from the deck
-            for (int i = 0; i < 4; i++)
-            {
-                this.deck.getDeck().RemoveAt(0);
-            }
+            if (p.getScore() > 21)
+                result = true;
 
-            //give cards 1 & 3 to user
-            player.getHand().Add(c1);
-            player.getHand().Add(c3);
-            //give cards 2 & 4 to dealer
-            dealer.getHand().Add(c2);
-            dealer.getHand().Add(c4);
+            return result;
         }
 
         /// <summary>
-        /// 
+        /// deals the initial cards to the dealer and player
         /// </summary>
-        /// <returns></returns>
+        public void deal()
+        {//deal initial cards to user and dealer
+            //grab first 4 cards from deck
+            player.getHand().Add(deck.getDeck()[0]);
+           // sendData(player.getID() + ": " + deck.getDeck()[0].toString());
+            //Console.WriteLine(player.getID() +": " + deck.getDeck()[0].toString());
+            deck.getDeck().RemoveAt(0);
+
+            dealer.getHand().Add(deck.getDeck()[0]);
+            //sendData("Dealer: *:*"); 
+            //Console.WriteLine("Dealer: *:*");
+            deck.getDeck().RemoveAt(0);
+
+            player.getHand().Add(deck.getDeck()[0]);
+            //sendData(player.getID() + ": " + deck.getDeck()[0].toString()); 
+            //Console.WriteLine(player.getID() + ": " + deck.getDeck()[0].toString());
+            deck.getDeck().RemoveAt(0);
+
+            dealer.getHand().Add(deck.getDeck()[0]);
+           // sendData("Dealer: " + deck.getDeck()[0].toString()); 
+            //Console.WriteLine("Dealer: " + deck.getDeck()[0].toString());
+            deck.getDeck().RemoveAt(0);
+
+            player.calculateScore();
+            //sendData("\n\n" + player.getID() + ": " + player.getScore()); 
+            //Console.WriteLine("\n\n" + player.getID() + ": " + player.getScore());
+        }
+
+        /// <summary>
+        /// asks user for bet
+        /// </summary>
+        /// <returns>result of the users bet amount</returns>
         private int getBet()
         {
             int result = 10;
 
+            sendData("How much are you wagering? ");
+            //Console.WriteLine("How much are you wagering? ");
+            string temp = getData();//Console.ReadLine();
+            result = Convert.ToInt32(temp);
+
             return result;
+        }
+
+        /// <summary>
+        /// asks the user to hit or stay
+        /// </summary>
+        /// <returns>0 if stay, 1 if hit</returns>
+        private void hitOrStay()
+        {
+            string choice = "";
+            sendData("(H)it or (S)tay: ");//Console.WriteLine("(H)it or (S)tay: ");
+            while (!choice.ToUpper().Equals("S"))
+            {
+
+                choice = getData();//Console.ReadLine();
+                
+                if (choice.ToUpper().Equals("H"))
+                {
+                    Card c = deck.getDeck()[0];
+                    player.getHand().Add(c);
+                    sendData("You Hit: " + c.toString());
+                    //Console.WriteLine("You Hit: " + c.toString());
+                    player.calculateScore();
+                    sendData(player.getID() + ": " + player.getScore());
+                    //Console.WriteLine( player.getID()+": "+player.getScore());
+                    deck.getDeck().RemoveAt(0);
+                    player.getHand().Add(c);
+                }
+                if (player.getScore() > 21) {
+                    sendData("You Bust");
+                    //Console.WriteLine("You Busted!");
+                    break;
+                }
+            }
         }
 
         /// <summary>
@@ -192,12 +241,13 @@ namespace demoSoftware
         /// <returns></returns>
         private bool startPlaying()
         {
-            bool result;
+            bool result = true;
 
-            Console.WriteLine("Would you like to play a game?\n(Y)es\n(N)o");
-            string choice = Console.ReadLine();
-            choice.ToUpper();
-            if (choice.Equals("Y")) { result = true; }
+            sendData("Hello " + player.getID());
+            sendData("Would you like to play a game?\n(Y)es\t(N)o: ");
+            //Console.WriteLine("Would you like to play a game?\n(Y)es\t(N)o: ");
+            string choice = getData();//Console.ReadLine();
+            if (choice.ToUpper().Equals("Y")) { result = true; }
             else { result = false; }
 
             return result;
@@ -211,13 +261,58 @@ namespace demoSoftware
         {
             bool result;
 
-            Console.WriteLine("Would you like to play again? \n(Y)es\n(N)o");
-            string choice = Console.ReadLine();
-            choice.ToUpper();
-            if (choice.Equals("Y")) { result = true; }
+            
+            sendData("Would you like to play again? \n(Y)es\n(N)o");
+            //Console.WriteLine("Would you like to play again? \n(Y)es\n(N)o");
+            string choice = getData();//Console.ReadLine();
+            if (choice.ToUpper().Equals("Y")) { 
+                result = true;
+                deck = new Deck();
+                player.setHand(new List<Card>());
+                dealer.setHand(new List<Card>());
+            }
             else { result = false; }
 
             return result;
         }
+
+        private void test() {
+            Player x = new Player(1000,"X");
+
+            for (int i = 0; i < 20; i++)
+            {
+                x.calculateScore();
+                //Console.WriteLine("score: " + x.getScore());
+                Console.WriteLine(x.toString());
+                x.getHand().Add( new Card(11, "ace", "SOME SUIT") );
+            }
+            x.calculateScore();
+            //Console.WriteLine("score: " + x.getScore());
+            Console.WriteLine(x.toString());
+
+            Console.ReadLine();
+        }
+
+        public static void sendData(string s)
+        {
+            Console.WriteLine(s);
+        }
+
+        public static string getData()
+        {
+            string result = null;
+
+            result = Console.ReadLine();
+
+            return result;
+        }
+
+        /*
+        public static void Main() {
+            GameController gc = new GameController();
+            gc.play();
+            //gc.test();
+        }
+         * */
     }
 }

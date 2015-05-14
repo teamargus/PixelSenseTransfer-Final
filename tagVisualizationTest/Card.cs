@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
+using demoSoftware.Properties;
+using System.Windows.Resources;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace demoSoftware
 {
@@ -70,6 +75,16 @@ namespace demoSoftware
         public String toString()
         {
             return this.face + ":" + this.suit + " = " + this.value;
+        }
+        public Image getImage()
+        {
+            Image cardImg = new Image();
+            String name = this.face+"_of_"+this.suit+".png";
+            Object o = Resources.ResourceManager.GetObject("Deck/"+name);
+            cardImg = new Image() { Source = new BitmapImage((new Uri(@"C:\Users\surface\Documents\GitHub\DemoSoftware\tagVisualizationTest\Resources\Deck\"+name, UriKind.Absolute))) };
+            cardImg.Height = 200;
+            cardImg.Width = 120;
+            return cardImg;
         }
     }
 }
